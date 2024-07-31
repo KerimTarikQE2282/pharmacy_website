@@ -2,9 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const { get } = require('../Controllers/items');    
+const { getAllJobs,AddItem } = require('../Controllers/items');    
 
 // Define routes
-router.get('/', get);
+router.get('/', getAllJobs);
+router.post('/',AddItem)
 
 module.exports = router;

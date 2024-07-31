@@ -53,17 +53,17 @@ const itemSchema=new mongoose.Schema({
       },
 
     costPrice: {
-        type: number,
+        type: Number,
         required: [true, 'Please provide item costPrice'],
    
       },
       sellingPrice: {
-        type: number,
+        type: Number,
         required: [true, 'Please provide item sellingPrice'],
  
       },
       reorderPoint: {
-        type: number,
+        type: Number,
         required: [true, 'Please provide item reorderPoint']
       },
       imagesUrl: {
@@ -78,7 +78,7 @@ const itemSchema=new mongoose.Schema({
         required: [true, 'Please provide item dimensions'],
       },
       taxRate: {
-        type: number,
+        type: Number,
         required: [true, 'Please provide item taxRate'],
       
       },

@@ -9,10 +9,15 @@ const categorySchema = new Schema({
     type: String,
     required: [true, 'Please provide Category Name'],
   },
+
   description: {
     type: String,
-    default: null,
+   
   }
+
+
+
+
 }, {
   timestamps: true 
 });

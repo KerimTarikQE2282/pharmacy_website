@@ -2,7 +2,7 @@
 
 const mongoose=require('mongoose')
 
-const brandSchema = new Schema({
+const brandSchema = mongoose.Schema({
    
     BrandName: {
       type: String,
