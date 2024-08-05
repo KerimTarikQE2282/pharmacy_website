@@ -17,10 +17,10 @@ LOGOUT,
 
 
 const initialState={
-access:localStorage.getItem('access'),
-refresh:localStorage.getItem('refresh'),
-isAuthenticated:null,
-user:null,
+// access:localStorage.getItem('access'),
+// refresh:localStorage.getItem('refresh'),
+// isAuthenticated:null,
+// user:null,
 }
 
 export default function(state=initialState,action){

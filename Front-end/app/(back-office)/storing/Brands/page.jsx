@@ -2,10 +2,13 @@ import DataTable from '@/Components/dashboard/DataTable'
 import TabelNavBar from '@/Components/TabelNavBar'
 import { getData } from '@/actions/storeActions/StoreGeneralCrudRequests/getData'
 import React from 'react'
+import { getData } from '@/actions/StoreGeneralCrudRequests'
+import { useSelector } from 'react-redux'
 
 export default async function Brands() {
   const columns=['BrandName','createdAt','updatedAt']
-  const Items= await getData('Brand')
+  getData('brands')
+  const items=useSelector(state=>state.brands)
   return (
     <div>
         <TabelNavBar link='/dashboard/inventory/Brands/new' title='Brands'/>
