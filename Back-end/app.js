@@ -1,6 +1,7 @@
 const express=require('express')
-const items=require('./routes/items')
+const items=require('./Routes/items')
 const brand=require('./Routes/brand')
+const supplier=require('./Routes/supplier')
 const app=express();
 const connectDB=require('./db/connect')
 const path=require('path')
@@ -14,8 +15,9 @@ app.use(helmet())
 app.use(xss())
 
 require('dotenv').config()
-app.use('/api/items',items)
+
 app.use('/api/brands',brand)
+app.use('/api/supplier',supplier)
 
 
 
