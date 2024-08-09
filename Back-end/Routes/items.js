@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getAllJobs,AddItem } = require('../Controllers/items');    
+const { addItem,getAllItems,getItemsByID,updateItems,removeItems } = require('../Controllers/items');    
 
 // Define routes
-router.get('/', getAllJobs);
-router.post('/',AddItem)
+router.route('/').get(getAllItems).post(addItem)
+router.route('/:id').get(getItemsByID).post().patch(updateItems).delete(removeItems)
 
 module.exports = router;
