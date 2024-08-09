@@ -13,7 +13,7 @@ const getAllBrands = async (req, res) => {
 const createBrand=async (req, res) => {
         const { name } = req.body
   try {
-    const newBrand=await Brand.create({name})//dnkwandkwlanklldnwaklndwkandkwa
+    const newBrand=await Brand.create({name})
     res.status(200).json({newBrand})
   } catch (error) {
     console.log(error)

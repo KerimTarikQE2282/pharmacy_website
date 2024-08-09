@@ -14,30 +14,26 @@ const itemSchema=new mongoose.Schema({
         required: [true, 'Please provide item description'],
         minlength: 3,
       },
-    //   Category: {
-    //     type: String,
-    //     required: [true, 'Please provide item description'],
-    //     minlength: 3,
-    //   },
+      category: {
+        type: mongoose.Types.ObjectId,
+        ref:'Category',
+        required:[true , 'please provide a category']
+      },
           
-    //   unit: {
-    //     type: number,
-    //     required: [true, 'Please provide item unit'],
-    //     maxlength: 100,
-    //     minlength: 3,
-    //   },
-    //   brand: {
-    //     type: String,
-    //     required: [true, 'Please provide item SKU'],
-    //     maxlength: 100,
-    //     minlength: 3,
-    //   },
-    //   Supplier: {
-    //     type: String,
-    //     required: [true, 'Please provide item SKU'],
-    //     maxlength: 100,
-    //     minlength: 3,
-    //   },
+      unit: {
+        type:mongoose.Types.ObjectId,
+        ref:'Unit'
+      },
+      brand: {
+        type:mongoose.Types.ObjectId,
+        ref:'Brand',
+        required:[true,'please provide a Brand for the item ']
+      },
+      supplier: {
+        type:mongoose.Types.ObjectId,
+        ref:'Supplier',
+        required:[true,'please provide a supplier for the item']
+      },
       
       SKU: {
         type: String,
