@@ -1,6 +1,6 @@
 const StatusCodes=require('http-status-codes')
-const Item=require('../models/item')
-const { BadRequestError } = require('../errors')
+const Item=require('../../models/item')
+const { BadRequestError } = require('../../errors')
 
 
 //TODO  dont forget to specify created by after specifyint 

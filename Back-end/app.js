@@ -3,6 +3,7 @@ const express=require('express')
 const app=express();
 require('dotenv').config()
 //Routes
+const auth=require('./Routes/auth')
 const items=require('./Routes/items')
 const brand=require('./Routes/brand')
 const supplier=require('./Routes/supplier')
@@ -34,9 +35,10 @@ app.use(cors())
 
 //TODO authentication middleware is supposed to be added to the routes that have to be used after the user has logged in 
 //routes
-app.use('/api/brands',brand)
-app.use('/api/supplier',supplier)
-app.use('/api/items',items)
+app.use('/api/v1',auth)
+app.use('/api/v1/brands',brand)
+app.use('/api/v1/supplier',supplier)
+app.use('/api/v1/items',items)
 
 
 //custom middlewares
