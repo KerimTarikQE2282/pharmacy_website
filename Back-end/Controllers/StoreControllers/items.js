@@ -1,5 +1,5 @@
 const StatusCodes=require('http-status-codes')
-const Item=require('../../models/item')
+const Item=require('../../models/Store/item')
 const { BadRequestError } = require('../../errors')
 
 

@@ -3,10 +3,12 @@ const express=require('express')
 const app=express();
 require('dotenv').config()
 //Routes
-const auth=require('./Routes/auth')
-const items=require('./Routes/items')
-const brand=require('./Routes/brand')
-const supplier=require('./Routes/supplier')
+const auth=require('./Routes/Auth/auth')
+const items=require('./Routes/Store/items')
+const brand=require('./Routes/Store/brand')
+const supplier=require('./Routes/Buy/supplier')
+const SingleItemSale=require('./Routes/Sale/SingleItemSale')
+const GeneralSales=require('./Routes/Sale/GeneralSale')
 //middlewares
 const errorhandler=require('./middleware/error-handler')
 const notfound=require('./middleware/not-found')
@@ -39,8 +41,8 @@ app.use('/api/v1',auth)
 app.use('/api/v1/brands',brand)
 app.use('/api/v1/supplier',supplier)
 app.use('/api/v1/items',items)
-
-
+app.use('/api/v1/SingleItemSale',SingleItemSale)
+app.use('/api/v1/GeneralSales/',GeneralSales)
 //custom middlewares
 
 app.use(notfound)

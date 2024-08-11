@@ -9,6 +9,10 @@ const itemSchema=new mongoose.Schema({
         maxlength: 100,
         minlength: 3,
       },
+      price:{
+        type:Number,
+        required:[true,"please provide the price of the item"]
+      },
       description: {
         type: String,
         required: [true, 'Please provide item description'],
