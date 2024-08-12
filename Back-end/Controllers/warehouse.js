@@ -1,4 +1,4 @@
-const Warehouse = require('../models/warehouse');
+const Warehouse = require('../models/Store/warehouse');
 
 const getAllWarehouses = async (req, res) => {
   try {
