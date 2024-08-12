@@ -1,26 +1,54 @@
+require('express-async-errors');
 const express=require('express')
-const items=require('./Routes/items')
-const brand=require('./Routes/brand')
-const warehouse=require('./Routes/warehouse')
-const supplier=require('./Routes/supplier')
 const app=express();
+require('dotenv').config()
+//Routes
+const auth=require('./Routes/Auth/auth')
+const items=require('./Routes/Store/items')
+const brand=require('./Routes/Store/brand')
+const supplier=require('./Routes/Buy/supplier')
+const SingleItemSale=require('./Routes/Sale/SingleItemSale')
+const GeneralSales=require('./Routes/Sale/GeneralSale')
+const WareHouse=require('./Routes/warehouse')
+//middlewares
+const errorhandler=require('./middleware/error-handler')
+const notfound=require('./middleware/not-found')
+const authermticationMiddleware=require('./middleware/authentication')
+//packages
 const connectDB=require('./db/connect')
-const path=require('path')
+const cors=require('cors')
 const helmet = require('helmet');
 const xss = require('xss-clean');
+const rateLimit=require('express-rate-limit')
 
 
+//using packages
+app.use(rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000 ,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+  }));
+  
 app.use(express.json());
 app.use(helmet())
-
 app.use(xss())
+app.use(cors())
 
-require('dotenv').config()
 
-app.use('/api/brands',brand)
-app.use('/api/supplier',supplier)
-app.use('/api/warehouse',warehouse)
+//TODO authentication middleware is supposed to be added to the routes that have to be used after the user has logged in 
+//routes
+app.use('/api/v1',auth)
+app.use('/api/v1/brands',brand)
+app.use('/api/v1/supplier',supplier)
+app.use('/api/v1/items',items)
+app.use('/api/v1/SingleItemSale',SingleItemSale)
+app.use('/api/v1/GeneralSales/',GeneralSales)
+app.use('/api/v1/WareHouse/',WareHouse)
+//custom middlewares
 
+app.use(notfound)
+app.use(errorhandler)
 
 
 const port=3002 || process.env.PORT;
