@@ -9,7 +9,8 @@ const brand=require('./Routes/Store/brand')
 const supplier=require('./Routes/Buy/supplier')
 const SingleItemSale=require('./Routes/Sale/SingleItemSale')
 const GeneralSales=require('./Routes/Sale/GeneralSale')
-const WareHouse=require('./Routes/warehouse')
+const WareHouse=require('./Routes/Store/warehouse')
+const WareHouseAdjustments=require('./Routes/Store/Inventory_Adjustments')
 //middlewares
 const errorhandler=require('./middleware/error-handler')
 const notfound=require('./middleware/not-found')
@@ -45,6 +46,8 @@ app.use('/api/v1/items',items)
 app.use('/api/v1/SingleItemSale',SingleItemSale)
 app.use('/api/v1/GeneralSales/',GeneralSales)
 app.use('/api/v1/WareHouse/',WareHouse)
+app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
+
 //custom middlewares
 
 app.use(notfound)
