@@ -1,26 +1,27 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const addStockAdjustmentSchema = new Schema({
-  ReferenceNumber: {
-    type: String,
-    required: [true, 'Please provide a reference number'],
+const transferSchema = new mongoose.Schema({
+  item: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Item', 
+    required: true 
   },
-  AddStockQty: {
-    type: Number,
-    required: [true, 'Please provide the quantity to add'],
+  From_warehouse: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Warehouse', 
+    required: true 
   },
-  WareHouseId: {
-    type: Schema.Types.ObjectId,
-    ref: 'WareHouse',
-    required: [true, 'Please provide the warehouse ID'],
+  ToWarehouse: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Warehouse', 
+    required: true 
   },
-  AddingInventoryNotes: {
-    type: String,
-    default: null,
+  Carton_number: { 
+    type: Number, 
+    required: true 
   }
-}, {
-  timestamps: true
 });
 
-module.exports = mongoose.model('AddStockAdjustment', addStockAdjustmentSchema);
+const Transfer = mongoose.model('Transfer', transferSchema);
+
+module.exports = Transfer;
