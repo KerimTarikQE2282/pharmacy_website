@@ -7,6 +7,7 @@ const auth=require('./Routes/Auth/auth')
 const items=require('./Routes/Store/items')
 const brand=require('./Routes/Store/brand')
 const supplier=require('./Routes/Buy/supplier')
+const invoice=require('./Routes/Sale/Invoice')
 const SingleItemSale=require('./Routes/Sale/SingleItemSale')
 const GeneralSales=require('./Routes/Sale/GeneralSale')
 const WareHouse=require('./Routes/Store/warehouse')
@@ -44,9 +45,11 @@ app.use('/api/v1/brands',brand)
 app.use('/api/v1/supplier',supplier)
 app.use('/api/v1/items',items)
 app.use('/api/v1/SingleItemSale',SingleItemSale)
+app.use('/api/v1/invoice/',invoice)
 app.use('/api/v1/GeneralSales/',GeneralSales)
 app.use('/api/v1/WareHouse/',WareHouse)
 app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
+
 
 //custom middlewares
 
