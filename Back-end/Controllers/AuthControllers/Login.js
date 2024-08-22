@@ -1,10 +1,11 @@
 const StatusCodes=require('http-status-codes')
 const User=require('../../models/User/User');
-const { UnauthenticatedError } = require('../../errors');
+const { UnauthenticatedError, BadRequestError } = require('../../errors');
 
 
 const login=async (req,res)=>{
-const {email,password}=req.body;
+    console.log(req.query)
+const {email,password}=req.query;
 if(!email || !password){
     throw new BadRequestError("please provide email and password")
 }
