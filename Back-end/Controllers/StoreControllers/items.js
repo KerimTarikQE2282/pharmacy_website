@@ -25,10 +25,14 @@ const getItemsByID=async (req,res)=>{
 
 const updateItems=async(req,res)=>{
   const {id}=req.params;
+  console.log("🚀 ==> file: items.js:28 ==> updateItems ==> id:", id);
+
   const MyData=req.body;
  
-  const UpdatableItem=await Item.findById({_id:id});
-  if(!updateItems || !id){
+  const UpdatableItem=await Item.findOne({_id:id});
+  console.log("🚀 ==> file: items.js:31 ==> updateItems ==> UpdatableItem:", UpdatableItem);
+
+  if(!UpdatableItem || !id){
     throw new BadRequestError("please provide valid Id");
   }
   const UpdatedItem=await Item.findOneAndUpdate({_id:id},MyData,{

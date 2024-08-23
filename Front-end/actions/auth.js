@@ -54,60 +54,35 @@ import {
         }
     }
 
-    export const load_user = () => async dispatch => {
-        if (localStorage.getItem('access')) {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `JWT ${localStorage.getItem('access')}`,
-                
-                }
-            }; 
-            const result = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
-            const email=result.data.email
-            try {
-               const res=await axios.get(`http://127.0.0.1:8000/api/Employee_Login_Detailed/${email}/`)
-               
-                dispatch({
-                    type: USER_LOADED_SUCCESS,
-                    payload: res.data
-                });
-            } catch (err) {
-                dispatch({
-                    type: USER_LOADED_FAIL
-                });
-            }
-        } else {
-            dispatch({
-                type: USER_LOADED_FAIL
-            });
-        }
-    };
 
-    export const login = (email, password) => async dispatch => {
+
+    export const login = (data,setLoading,setError) => async dispatch => {
         console.log('axios reached')
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
         };
+     const url='http://localhost:3002/api/v1/?email='+ data.Email +'&password='+data.Password+''
+        
     
-        const body = JSON.stringify({ email, password });
-    
-        try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/create/`, body, config);
-    
+       try {
+            const res = await axios.get(url, config);
+           
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
-    
-            dispatch(load_user());
-        } catch (err) {
+            setLoading(false)
+            
+         } catch (err) {
+
             dispatch({
                 type: LOGIN_FAIL
             })
-        }
+            setLoading(false)
+            setError( err?.response?.data?.msg)
+         }
     };
   
     export const reset_password=(email)=> async dispatch=>{

@@ -1,3 +1,4 @@
+"use client"
 import {
 LOGIN_SUCCESS,
 LOGIN_FAIL,
@@ -17,14 +18,14 @@ LOGOUT,
 
 
 const initialState={
-// access:localStorage.getItem('access'),
-// refresh:localStorage.getItem('refresh'),
-// isAuthenticated:null,
-// user:null,
+    access:global?.window?.localStorage.getItem('access'),
+    isAuthenticated:null,
+    user:null,
 }
 
 export default function(state=initialState,action){
     const {type,payload}=action
+
     
     switch(type){
         case AUTHENTICATED_SUCCESS:
@@ -39,7 +40,7 @@ export default function(state=initialState,action){
                 ...state,
                 isAuthenticated:true,/**changed */
                 access:payload.access,
-                refresh:payload.refresh
+                user:payload.user
             }
         case USER_LOADED_SUCCESS:
             return{

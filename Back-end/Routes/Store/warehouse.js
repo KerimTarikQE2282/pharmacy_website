@@ -10,11 +10,11 @@ const {
   searchByLocation
 } = require('../../Controllers/StoreControllers/warehouse');
 
-router.get('/getAllWarehouses', getAllWarehouses);
-router.get('/getWarehouseById/:id', getWarehouseById);
-router.post('/createWarehouse', createWarehouse);
-router.put('/updateWarehouse/:id', updateWarehouse);
-router.delete('/deleteWarehouse/:id', deleteWarehouse);
-router.get('/searchByLocation/:location', searchByLocation);
+router.get('/', getAllWarehouses);
+router.get('/:id', getWarehouseById);
+router.post('/', createWarehouse);
+router.patch('/:id', updateWarehouse);
+router.delete('/:id', deleteWarehouse);
+router.get('/:location', searchByLocation);
 
 module.exports = router;

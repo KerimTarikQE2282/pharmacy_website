@@ -1,14 +1,19 @@
+"use client"
 import { Columns, Pencil, Trash } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import DeleteBtn from '../../app/(back-office)/GeneralComponents/DeleteBtn'
+import { useGetData } from '@/hooks/useGetData'
 
 export default function DataTable({Data,columns=[''],resourceTitle}) {
- 
-  return (
-    
 
-<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+  
+
+
+  return (
+  
+ <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
         <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
             <tr  >
@@ -26,7 +31,7 @@ export default function DataTable({Data,columns=[''],resourceTitle}) {
         </thead>
         <tbody>
 
-    {Data.map((mydata)=>{
+    {Data?.map((mydata)=>{
         return(
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 " key={mydata.title}>
             
@@ -64,11 +69,11 @@ export default function DataTable({Data,columns=[''],resourceTitle}) {
                  
                
                <td className=" py-4 flex gap-10  ">
-                    <Link href={`/dashboard/inventory/${resourceTitle}/update/${mydata.id}`} className='font-medium text-blue item-center space-x-2 text-blue-500'><Pencil className='text'/></Link>
+                    <Link href={`/storing/${resourceTitle}/update/${mydata._id}`} className='font-medium text-blue item-center space-x-2 text-blue-500'><Pencil className='text'/></Link>
                    
                 </td>
                 <td>
-               <DeleteBtn resourceTitle={resourceTitle} id={mydata.id}/>
+               <DeleteBtn resourceTitle={resourceTitle} id={mydata?._id}/>
                 </td>
             </tr>
         )
@@ -83,5 +88,8 @@ export default function DataTable({Data,columns=[''],resourceTitle}) {
     </table>
 </div>
 
-  )
+  
+
+
+)
 }

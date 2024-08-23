@@ -1,4 +1,5 @@
 const Brand = require('../../models/Store/brands');
+const StatusCodes=require('http-status-codes')
 
 const getAllBrands = async (req, res) => {
   try {
@@ -11,13 +12,9 @@ const getAllBrands = async (req, res) => {
 };
 
 const createBrand=async (req, res) => {
-        const { name } = req.body
-  try {
-    const newBrand=await Brand.create({name})
-    res.status(200).json({newBrand})
-  } catch (error) {
-    console.log(error)
-  }
+  const myNewBrand=await Brand.create(req.body)
+  res.status(StatusCodes.OK).json(myNewBrand)
+ 
 };
 
 module.exports = { getAllBrands,createBrand };
