@@ -1,4 +1,6 @@
-const Unit = require('../models/Unit');
+const { StatusCodes } = require('http-status-codes');
+const Unit = require('../../models/Store/units');
+const { BadRequestError } = require('../../errors');
 
 const getAllUnits = async (req, res) => {
     
@@ -15,9 +17,10 @@ const getAllUnits = async (req, res) => {
   const createUnit = async (req, res) => {
 
         
-        const { name } = req.body
-        const createUnit = await unit.create({name});
-        
+       
+        const createdUnit = await Unit.create(req.body);
+        res.status(StatusCodes.OK).json({createdUnit})
+  }
      
  const getUnitById = async (req, res) => {
         const id = req.params.id;
@@ -36,29 +39,42 @@ const getAllUnits = async (req, res) => {
     };
 
     const deleteUnitById = async (req, res) => {
-        const id = req.params.id;
-        
-            const unit = await Unit.findByIdAndDelete(id);
-    
-            if (!unit) {
-                
-                return res.status(404).json({ message: "Unit Not Found." });
-            }
-    
-            
-        
-            
-    };
+        const { id } = req.params;
+      
+        const DeletableUnit = await Unit.findById({ _id: id });
+        if (!DeletableUnit || !id) {
+          throw new BadRequestError("Please provide a valid ID");
+        }
+      
+        await Unit.findOneAndDelete({ _id: id });
+        res.status(StatusCodes.OK).json({ Deleted: true });
+      };
     
     const updateUnitById = async (req, res) => {
-        const id = req.params.id;
+        const { id } = req.params;
+        console.log("🚀 ==> file: unit.js:28 ==> updateUnitById ==> id:", id);
+      
         const updateData = req.body;
-    
-        
-    };
+      
+        const UpdatableUnit = await Unit.findOne({ _id: id });
+        console.log("🚀 ==> file: unit.js:31 ==> updateUnitById ==> UpdatableUnit:", UpdatableUnit);
+      
+        if (!UpdatableUnit || !id) {
+          throw new BadRequestError("Please provide a valid ID");
+        }
+      
+        const UpdatedUnit = await Unit.findOneAndUpdate({ _id: id }, updateData, {
+          new: true,
+          runValidators: true
+        });
+      
+        res.status(StatusCodes.OK).json(UpdatedUnit);
+      };
+
+
     module.exports = { getAllUnits,getUnitById,createUnit,updateUnitById ,deleteUnitById};  
 
-};
+
 
 
 

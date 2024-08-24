@@ -10,10 +10,7 @@ const unitSchema = new Schema({
     type: String,
     default: null,
   },
-  items: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Item'
-  }]
+ 
 }, {
   timestamps: true
 });
