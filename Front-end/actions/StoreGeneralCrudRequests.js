@@ -94,8 +94,7 @@ export const makePUTApiRequest = (endpoint,setLoading,data,name) => async dispat
         console.log(error)
         setLoading(false)
         dispatch({
-          type:`UPDATE_${name}_FAILED`,
-          payload:res.data
+          type:`UPDATE_${name}_FAILED`
         })
       }
   

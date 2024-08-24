@@ -1,13 +1,16 @@
+"use client"
 import React from 'react'
 import NewBrand from '../../new/page'
-import { getDataById } from '@/actions/storeActions/StoreGeneralCrudRequests/getDataByid'
-export default async function Update({params:id}) {
-    const data=await getDataById('Brand',id)
-    console.log('from item',data)
-  return (
+import { useGetDataById } from '@/hooks/useGetDataById';
+export default  function Update({params:id}) {
 
-     
-      <NewBrand initialData={data} isupdate={true}/>
+
+            
+    const {isLoading,data,isError,error,isFetching}=useGetDataById('brands',id);
+   
+return <NewBrand initialData={data?.data} isupdate={true}/>
     
-  )
+ 
+    
+  
 }

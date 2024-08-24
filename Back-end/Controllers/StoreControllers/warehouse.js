@@ -3,7 +3,7 @@ const Warehouse =require('../../models/Store/warehouse')
 const getAllWarehouses = async (req, res) => {
   try {
     const warehouses = await Warehouse.find({});
-    res.status(200).json({ warehouses,number:(warehouses.length) });
+    res.status(200).json({ WareHouse:warehouses,number:(warehouses.length) });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'An error occurred while fetching the warehouses' });

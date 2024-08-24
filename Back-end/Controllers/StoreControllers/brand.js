@@ -1,5 +1,6 @@
 const Brand = require('../../models/Store/brands');
 const StatusCodes = require('http-status-codes');
+const { BadRequestError } = require('../../errors/')
 
 // Fetch all brands
 const getAllBrands = async (req, res) => {

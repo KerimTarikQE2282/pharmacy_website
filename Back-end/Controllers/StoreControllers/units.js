@@ -10,7 +10,7 @@ const getAllUnits = async (req, res) => {
             return res.status(404).json({ message: "No units found." });
         }
 
-        res.status(200).json({ units });
+        res.status(200).json({unit: units });
    
 };
 

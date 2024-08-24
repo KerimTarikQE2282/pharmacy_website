@@ -12,7 +12,6 @@ import {makePUTApiRequest} from "../../../../../actions/StoreGeneralCrudRequests
 import { connect } from "react-redux";
 
  function NewWareHouse({initialData,isupdate,makePOSTApiRequest,makePUTApiRequest}) {
- console.log("🚀 ==> file: page.jsx:15 ==> NewWareHouse ==> initialData:", initialData);
 
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -26,6 +25,8 @@ var done=false
         
        const done=await makePUTApiRequest(`WareHouse/${initialData._id}`,setLoading,data,'WareHouse')
          
+         console.log("🚀 ==> file: page.jsx:28 ==> onSubmit ==> done:", done);
+
          if(done==true){
           router.replace('/storing/WareHouse')
        }

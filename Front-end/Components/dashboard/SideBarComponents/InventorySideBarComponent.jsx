@@ -32,7 +32,7 @@ function InventorySideBarComponent() {
       },
       {
         name:"Units",
-        link:"/storing/units/",
+        link:"/storing/unit/",
         icon:<Ruler className='w-4 h-4'/>
       },
       {
