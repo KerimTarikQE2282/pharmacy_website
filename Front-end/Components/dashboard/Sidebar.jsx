@@ -3,7 +3,6 @@
 import { BaggageClaim, BarChart4, Blocks, BrainCircuit, ChevronDown, ChevronLeft, ChevronRight, File, FilesIcon, Flag, FolderClosed, Home, Plus, PlusCircle, ShoppingBasket, ShoppingCart, ShoppingCartIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import SubscriptionCard from './SubscriptionCard'
 import {
   Collapsible,
   CollapsibleContent,
@@ -12,6 +11,7 @@ import {
 import SalesSideBarComponent from './SideBarComponents/SalesSideBarComponent'
 import InventorySideBarComponent from './SideBarComponents/InventorySideBarComponent'
 import PurchaseSideBarComponent from './SideBarComponents/PurchaseSideBarComponent'
+import UserManagement from './SideBarComponents/UserManagement'
 
 
 function Sidebar() {
@@ -51,6 +51,7 @@ function Sidebar() {
        
     
       <PurchaseSideBarComponent/>
+      <UserManagement/>
 
        <Link href={"#"} className='flex items-center space-x-2 p-2'>
         <BrainCircuit className='w-4 h-4'/>
@@ -74,7 +75,6 @@ function Sidebar() {
         /*bottom  part*/
        }
     <div className='flex-col '>
-       <SubscriptionCard/>
        <button className='flex flex-col bg-slate-950 justify-end w-full items-center'>
         
        <div className='flex space-x-2  items-center py-3 px-2'>
