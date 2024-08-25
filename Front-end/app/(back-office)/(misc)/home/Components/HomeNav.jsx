@@ -5,7 +5,9 @@ import React from 'react'
 import { usePathname } from 'next/navigation'
 
 function HomeNav() {
-    const pathname = usePathname()
+
+ const User= JSON.parse(global?.window?.localStorage.getItem('INVENTORY_USER'))
+const pathname = usePathname()
 console.log(pathname)
     const navLinks=[
         {
@@ -38,8 +40,8 @@ const DisplayNavLinks=navLinks.map((link)=>{
         <Home/>
         </div>
         <div className='flex-col'>
-            <p className='font-semibold text-slate-900 '>Hello, JB WEB DEVELOPER</p>
-            <span className='text-sm'>kerim</span>
+            <p className='font-semibold text-slate-900 '>Hello,{User?.username}</p>
+            <span className='text-sm'>{User.fullName}</span>
        
         </div>
         

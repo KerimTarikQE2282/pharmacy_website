@@ -17,7 +17,8 @@ import { connect } from 'react-redux'
 
 
  function LoginForm({login,isAuthenticated}) {
-
+  const user=global?.window?.localStorage.getItem('INVENTORY_USER')
+ 
   const router=useRouter();
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [error,setError]=React.useState('')
@@ -30,8 +31,9 @@ import { connect } from 'react-redux'
     router.push('/home/overview')  
   }
   React.useEffect(()=>{
-    if(isAuthenticated){
-      router.push('/home/overview')   }},[loading])
+    if(user != null){
+      router.push('/home/overview')
+        }},[loading])
   return (
     <div className='h-screen flex items-center justify-center'>
       
@@ -67,8 +69,7 @@ import { connect } from 'react-redux'
 }
 
 const mapStateToProps=(state)=>({
-  isAuthenticated:state.auth.isAuthenticated,
-  user:state.auth.user
+
 })
 
 export default connect(mapStateToProps,{login})(LoginForm)
