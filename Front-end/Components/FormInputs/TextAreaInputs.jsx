@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TextAreaInputs({ label, name, width, type = "text", isrequired = true, register, errors,defaultValue={} }) {
+export default function TextAreaInputs({ label, name, width, type = "text", isrequired = true, register, errors,defaultValue='' }) {
   return (
     <div className="sm:col-span-2">
     <label

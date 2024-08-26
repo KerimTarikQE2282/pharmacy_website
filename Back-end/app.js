@@ -28,12 +28,12 @@ const rateLimit=require('express-rate-limit')
 
 
 //using packages
-app.use(rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 1000 ,
-    standardHeaders: 'draft-7',
-    legacyHeaders: false,
-  }));
+//app.use(rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes
+//     max: 1000 ,
+//     standardHeaders: 'draft-7',
+//     legacyHeaders: false,
+//   }));
   
 app.use(express.json());
 app.use(helmet())
@@ -51,7 +51,8 @@ app.use('/api/v1/SingleItemSale',SingleItemSale)
 app.use('/api/v1/GeneralSales/',GeneralSales)
 app.use('/api/v1/WareHouse/',WareHouse)
 app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
-
+app.use('/api/v1/unit',unit)
+app.use('/api/v1/category',category)
 //custom middlewares
 
 app.use(notfound)

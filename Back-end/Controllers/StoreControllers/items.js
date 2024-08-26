@@ -11,7 +11,7 @@ const addItem = async (req,res) => {
 
 const getAllItems=async(req,res)=>{
   const AllItems=await Item.find({})
-  res.status(StatusCodes.OK).json({AllItems:AllItems,lenght:AllItems.length})
+  res.status(StatusCodes.OK).json({items:AllItems,lenght:AllItems.length})
 }
 const getItemsByID=async (req,res)=>{
   const {id}=req.params;

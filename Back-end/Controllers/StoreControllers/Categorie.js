@@ -6,7 +6,7 @@ const BadRequestError = require('../../errors'); // Adjust the path as necessary
 const getAllCategories = async (req, res) => {
   try {
     const categories = await Category.find({});
-    res.status(StatusCodes.OK).json({ categories });
+    res.status(StatusCodes.OK).json({"category": categories });
   } catch (error) {
     console.log(error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'An error occurred while fetching the categories' });
@@ -46,9 +46,12 @@ const updateCategoryById = async (req, res) => {
   }
 
   const UpdatedCategory = await Category.findOneAndUpdate({ _id: id }, updateData, {
+
     new: true,
     runValidators: true
   });
+
+  console.log("🚀 ==> file: Categorie.js:49 ==> updateCategoryById ==> updateData:", updateData);
 
   res.status(StatusCodes.OK).json(UpdatedCategory);
 };

@@ -5,9 +5,8 @@ import { useQuery } from "react-query";
 const fetchData=async (url,id)=>{
  const myurl=`http://localhost:3002/api/v1/${url}/${id.id}`
  console.log("🚀 ==> file: useGetDataById.js:8 ==> fetchData ==> myurl:", myurl);
-
+ console.log('ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')
 return await axios.get(myurl)
-
 }
 
 

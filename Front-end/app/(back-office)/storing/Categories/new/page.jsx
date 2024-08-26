@@ -1,31 +1,36 @@
 "use client"
 import { useForm } from "react-hook-form";
 import React from 'react';
-import FormHeader from '../../InventoryComponents/FormHeaders';
+import FormHeader from '../../../../../Components/dashboard/FormHeaders';
 import TextInput from "@/Components/FormInputs/TextInput";
 import SubumitButton from "@/Components/FormInputs/SubumitButton";
 import TextAreaInputs from "@/Components/FormInputs/TextAreaInputs";
 import toast from "react-hot-toast";
-import makePOSTApiRequest from '@/actions/storeActions/StoreGeneralCrudRequests/PostRequest';
-import  makePUTApiRequest from '@/actions/storeActions/StoreGeneralCrudRequests/PutRequests';
+import {makePOSTApiRequest,makePUTApiRequest} from '@/actions/StoreGeneralCrudRequests';
 
 import { useRouter } from "next/navigation";
+import { connect } from "react-redux";
 
-export default function NewCategory(props) {
-  var isupdate=false;
-  var initialData={}
-  var {isupdate,initialData}=props
+function NewCategory({initialData='',isupdate=false, makePOSTApiRequest, makePUTApiRequest}) {
+  // console.log("🚀 ==> file: page.jsx:15 ==> NewCategory ==> initialData:", initialData);
+
   const router=useRouter()
-  console.log(initialData.title)
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [loading,setLoading]=React.useState(false)
   
   async function onSubmit(data){
-   
+   console.log("🚀 ==> file: page.jsx:22 ==> onSubmit ==> data:", data);
+
+   const mydata={
+    
+    title: data.CategoryName,
+  description:data.CategoryDescription
+
+   }
     if(isupdate){
       // Update Request 
       try {
-       await makePUTApiRequest(`Categories/${initialData.id}`,setLoading,data,'Category')
+       await makePUTApiRequest(`category/${initialData._id}`,setLoading,mydata,'Category')
          done=true
          if(done==true){
           router.replace('/dashboard/inventory/Category')
@@ -36,7 +41,7 @@ export default function NewCategory(props) {
      
     }
     else{
-      makePOSTApiRequest('Categories',setLoading,data,'Categories')
+      makePOSTApiRequest('category',setLoading,mydata,'Categories')
     }
 
   }
@@ -66,3 +71,13 @@ export default function NewCategory(props) {
   )
 
 }
+
+
+
+const mapStateToProps = (state) => ({
+
+})
+
+
+
+export default connect(mapStateToProps, { makePOSTApiRequest, makePUTApiRequest })(NewCategory)

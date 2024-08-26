@@ -6,9 +6,15 @@ import SubumitButton from "@/Components/FormInputs/SubumitButton";
 import TextAreaInputs from "@/Components/FormInputs/TextAreaInputs";
 import SelectComponent from "@/Components/FormInputs/SelectComponent";
 import ImageInput from "@/Components/FormInputs/ImageInput";
-import { makePOSTApiRequest, makePUTApiRequest } from "@/lib/apiRequest";
+import { makePOSTApiRequest, makePUTApiRequest } from "@/actions/StoreGeneralCrudRequests";
 import { useRouter } from 'next/navigation';
-export default  function CreateItemFrom(props) {
+import { connect } from "react-redux";
+  
+
+
+
+
+function CreateItemFrom(props) {
   console.log(props.initialData)
   const {categories,units,brands,warehouses,suppliers,initialData={},isupdate}=props
   const [imageUrl,setImageUrl]=React.useState(props.isupdate==true ? props.initialData?.imageUrl :'')
@@ -94,3 +100,8 @@ export default  function CreateItemFrom(props) {
     
   )
 }
+
+const mapStateToProps=(state)=>({
+  })
+
+  export default connect(mapStateToProps, { makePOSTApiRequest, makePUTApiRequest })(CreateItemFrom)
