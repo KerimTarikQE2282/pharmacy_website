@@ -1,9 +1,9 @@
-const express=require('express')
-const router=express.Router()
+// const express=require('express')
+// const router=express.Router()
 
-const {CreateOrderItem}=require('../../Controllers/SalesControllers/OrderItem')
+// const {CreateOrderItem}=require('../../Controllers/SalesControllers/OrderItem')
 
 
-router.post('/createOrderItem',CreateOrderItem)
+// router.post('/createOrderItem',CreateOrderItem)
 
-module.exports=router;
+// module.exports=router;

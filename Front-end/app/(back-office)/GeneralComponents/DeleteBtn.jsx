@@ -3,6 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation';
 import {  Trash2 } from 'lucide-react'
 import Swal from 'sweetalert2'
+import axios from 'axios';
 
 export default function DeleteBtn(props) {
   const router = useRouter();
@@ -22,15 +23,15 @@ export default function DeleteBtn(props) {
         confirmButtonText: "Yes, delete it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-             await fetch(`http://localhost:3000/api/${resourceTitle}?id=${id}`,
-              {
-           method:'DELETE'})
-           router.refresh();
-          Swal.fire({
+             await axios.delete(` http://localhost:3002/api/v1/${resourceTitle}/${id}`);
+          //  router.refresh();
+          await Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
             icon: "success"
           });
+          location.reload();
+         
         }
       });
     }

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 
-const categorySchema = new Schema({
+const categorySchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'Please provide Category Name'],
@@ -14,10 +14,6 @@ const categorySchema = new Schema({
     type: String,
    
   }
-
-
-
-
 }, {
   timestamps: true 
 });

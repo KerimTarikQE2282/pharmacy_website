@@ -10,8 +10,8 @@ const getAllSuppliers = async (req, res) => {
 
 
 const createSupplier=async (req, res) => {
-    const { name } = req.body
-    const newSupplier=await supplier.create({name})
+   
+    const newSupplier=await supplier.create(req.body)
     res.status(200).json({newSupplier})
  
 };

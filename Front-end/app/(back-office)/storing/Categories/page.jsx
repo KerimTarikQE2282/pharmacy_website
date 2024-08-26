@@ -1,20 +1,22 @@
+"use client"
 import DataTable from '@/Components/dashboard/DataTable'
 import TabelNavBar from '@/Components/TabelNavBar'
-import { getData } from '@/actions/storeActions/StoreGeneralCrudRequests/getData'
 import React from 'react'
+import { useGetData } from '@/hooks/useGetData'
 
-export default async function Categories() {
+export default  function Categories() {
 const columns=['title','description']
-  const Categories=await getData('Categories')
+
+
  
  
   return (
     <div>
     {/* { header } */}
-  <TabelNavBar link='/dashboard/inventory/Categories/new/' title='Categories'/>
+  <TabelNavBar link='/storing/Categories/new/' title='Categories'/>
     {/* { Table  } */}
     <div className='my-4 p-8'>
-    <DataTable Data={Categories } columns={columns} resourceTitle={'Categories'}/>
+    <DataTable name='category' columns={columns} resourceTitle={'category'}/>
 
     </div>
      

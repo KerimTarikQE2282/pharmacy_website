@@ -1,113 +1,79 @@
 import toast from "react-hot-toast";
-import axios from axios
-const baseUrl = 'http://localhost:3000/api';
+import axios from "axios";
 
-export async function getData(endpoint,setLoading,name) {
- 
-    //TODO check how i make no cache with axios
 
-    const config = {
-      headers: {
-        'Content-Type':  'application/json',
-      },
-    }; 
-    try {
-      const res= await axios.get('url',config)
-      dispatch({
-        type:`GET_ALL_${name}_SUCCESS`,
-        payload:res.data
-      })
-    } catch (error) {
-      dispatch({
-        type:`GET_ALL_${name}_FAILED`,
-      })
-      console.log(error)
-      setLoading(false)
-    }
-}
 
-export async function getDataById(endpoint,setLoading,name){
-  const baseUrl = 'http://localhost:3000/api';
- 
-//TODO check how i make no cache with axios
+const baseUrl = 'http://localhost:3002/api/v1/';
+
+
+
+export const makePOSTApiRequest = (endpoint,setLoading,data,name) => async dispatch => {
+  setLoading(true);
+
+  const url=`${baseUrl}${endpoint}`
+
+  console.log("🚀 ==> file: StoreGeneralCrudRequests.js:13 ==> makePOSTApiRequest ==> url:", url);
 
   const config = {
-    headers: {
-      'Content-Type':  'application/json',
-    },
-  }; 
-  try {
-    const res=await axios.get('url',config)
-    dispatch({
-      type:`GET_${name}_BY_ID_SUCCESS`,
-      payload:res.data
-    })
-  } catch (error) {
-    dispatch({
-      type:`GET_${name}_BY_ID_FAILED`,
-      
-    })
-    console.log(error)
-    setLoading(false)
-  }
-}
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
-export async function makePOSTApiRequest(endpoint,setLoading,data,name){
-  
-  const baseUrl='http://localhost:3000'
-
-  const config = {
-    headers: {
-      'Content-Type':  'application/json',
+try {
+  const res = await axios.post(url, data, config);
+dispatch({
+  type: `CREATE_${name}_SUCCESS`,
+  payload: res.data,
+});
+ 
+  setLoading(true);
+  if (res.status === 200 || res.status === 201) { // Check for successful response status
+    console.log(res.data);
+    setLoading(false);
+    toast.success(`Successfully Added A ${name}!`, { icon: '✔️' });
+   
+    if (typeof reset === 'function') {
+      reset(); // Ensure reset is defined
     }
+  } else {
+    setLoading(false);
+    toast.error('Something went wrong!', { icon: '❌' });
+    dispatch({
+      type: `CREATE_${name}_FAILED`,
+      payload: res.data,
+    });
   }
-  try {
-    setLoading(true)
-    const res=await axios.post(`${baseUrl}/api/${endpoint}`,data,config)
-    if(response.ok){
-  console.log(response.json());
-  setLoading(false)
-  toast.success(`Successfully Added A ${name}!`, {icon: '✔️'})
+} catch (error) {
+  console.error(error);
+  setLoading(false);
+  toast.error('Something went wrong!', { icon: '❌' });
   dispatch({
-    type:`CREATE_${name}_SUCCESS`,
-    payload:res.data
-  })
-   reset();
-  }else{
-    setLoading(false)
-    toast.error('Some thing went wrong!', {icon: '❌'})
-    dispatch({
-      type:`CREATE_${name}_FAILED`,
-      payload:res.data
-    })
-  }
- 
-  } catch (error) {
-    console.log(error)
-    setLoading(false)
-    dispatch({
-      type:`CREATE_${name}_FAILED`,
-      payload:res.data
-    })
-  }
-
+    type: `CREATE_${name}_FAILED`,
+    payload: error.response?.data || error.message,
+  });
 }
+};
 
-export async function makePUTApiRequest(endpoint,setLoading,data,name){
- 
-    const baseUrl='http://localhost:3000'
-  
-    
-      const config = {
+
+
+
+
+export const makePUTApiRequest = (endpoint,setLoading,data,name) => async dispatch => {
+setLoading(true)
+     const config = {
         headers: {
           'Content-Type':  'application/json',
         }
       }
       try {
         
-        const response=axios.patch(`${baseUrl}/api/${endpoint}`,data,config)
-                if(response.ok){
-                console.log(response.json());
+        const response=await axios.patch(`${baseUrl}${endpoint}`,data,config)
+        
+                console.log("🚀 ==> file: StoreGeneralCrudRequests.js:71 ==> makePUTApiRequest ==> response:", response);
+
+                if(response.statusText=200){
+                
                 setLoading(false)
                 console.log('checker',endpoint,setLoading,data,name)
                 toast.success(`Successfully Updated A ${name}!`, {icon: '✔️'})
@@ -115,7 +81,7 @@ export async function makePUTApiRequest(endpoint,setLoading,data,name){
                   type:`UPDATE_${name}_SUCCESS`,
                   payload:res.data
                 })
-               
+               return true
               }else{
                 setLoading(false)
                 toast.error('Some thing went wrong!', {icon: '❌'})
@@ -124,14 +90,13 @@ export async function makePUTApiRequest(endpoint,setLoading,data,name){
                   payload:res.data
                 })
               }
-              
+              setLoading(false)
         
       } catch (error) {
         console.log(error)
         setLoading(false)
         dispatch({
-          type:`UPDATE_${name}_FAILED`,
-          payload:res.data
+          type:`UPDATE_${name}_FAILED`
         })
       }
   

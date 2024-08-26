@@ -8,7 +8,7 @@ import {
   } from "@/components/ui/collapsible"
 function InventorySideBarComponent() {
     const [inventoryOpen,setInventoryopen]=React.useState(false)
-
+    
     const inventoryLinks=[
       {
         name:"All",
@@ -32,7 +32,7 @@ function InventorySideBarComponent() {
       },
       {
         name:"Units",
-        link:"/storing/units/",
+        link:"/storing/unit/",
         icon:<Ruler className='w-4 h-4'/>
       },
       {

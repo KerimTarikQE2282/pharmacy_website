@@ -1,6 +1,6 @@
 const StatusCodes=require('http-status-codes')
 const Item=require('../../models/Store/item')
-const { BadRequestError } = require('../../errors')
+const { BadRequestError } = require('../../errors/')
 
 
 //TODO  dont forget to specify created by after specifyint 
@@ -11,7 +11,7 @@ const addItem = async (req,res) => {
 
 const getAllItems=async(req,res)=>{
   const AllItems=await Item.find({})
-  res.status(StatusCodes.OK).json({AllItems:AllItems,lenght:AllItems.length})
+  res.status(StatusCodes.OK).json({items:AllItems,lenght:AllItems.length})
 }
 const getItemsByID=async (req,res)=>{
   const {id}=req.params;
@@ -25,10 +25,14 @@ const getItemsByID=async (req,res)=>{
 
 const updateItems=async(req,res)=>{
   const {id}=req.params;
+  console.log("🚀 ==> file: items.js:28 ==> updateItems ==> id:", id);
+
   const MyData=req.body;
  
-  const UpdatableItem=await Item.findById({_id:id});
-  if(!updateItems || !id){
+  const UpdatableItem=await Item.findOne({_id:id});
+  console.log("🚀 ==> file: items.js:31 ==> updateItems ==> UpdatableItem:", UpdatableItem);
+
+  if(!UpdatableItem || !id){
     throw new BadRequestError("please provide valid Id");
   }
   const UpdatedItem=await Item.findOneAndUpdate({_id:id},MyData,{

@@ -17,6 +17,6 @@ const isPasswordCorrect=await userAccount.passwordChecker(password);
 if(!isPasswordCorrect){
     throw new UnauthenticatedError("Invalid Credentials")
 }
-res.status(StatusCodes.OK).json({user:userAccount.username,token:userAccount.createJWT()});
+res.status(StatusCodes.OK).json({user:userAccount,token:userAccount.createJWT()});
 }
 module.exports={login}
