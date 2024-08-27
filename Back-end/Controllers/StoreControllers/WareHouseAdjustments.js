@@ -38,27 +38,30 @@ var mySingleItem={
 const Adjust_wareHouse_Item=async (req,res)=>{
 
   const {item,From_warehouse,ToWareHouse,Carton_number,from_Carton_Number,to_Carton_Number}=req.body;
-  if(!item || !From_warehouse || !ToWareHouse || !Carton_number || !from_Carton_Number || !to_Carton_Number)
-    throw new BadRequestError("please provide all data required to make transfer")
+  // if(!item || !From_warehouse || !ToWareHouse || !Carton_number || (!from_Carton_Number || !to_Carton_Number))
+  //   throw new BadRequestError("please provide all data required to make transfer")
   if(Carton_number != null){
-  const myItem=await ContainedItems.findOne({item:item,Carton_Number:Carton_number,WareHouseId:From_warehouse})
+  const myItem=await ContainedItemsModel.findOne({item:item,Carton_Number:Carton_number,WareHouseId:From_warehouse})
  
-  if(!myItem)
+  if(!myItem){
     throw new BadRequestError("item is not available ");
-  const transfered_item=await ContainedItems.findOneAndUpdate(WareHouseItem._id,{WareHouseId:ToWareHouse},{new:true,runValidators:true})
+  }
+  const transfered_item=await ContainedItemsModel.findOneAndUpdate(WareHouseItem._id,{WareHouseId:ToWareHouse},{new:true,runValidators:true})
   await AddStockAdjustments.create({item,From_warehouse,ToWareHouse,Carton_number});
   res.status(StatusCodes.OK).json({msg:`succesfully transfered item ${transfered_item.item} from ${From_warehouse} to ${ToWareHouse}`})
   }
   else if (from_Carton_Number != null && to_Carton_Number != null){
     var myItem=[]
     for (let i=from_Carton_Number;i<=to_Carton_Number;i++){
-       item=await ContainedItems.findOne({item:item,Carton_Number:i,WareHouseId:From_warehouse});
+       item=await ContainedItemsModel.findOne({item:item,Carton_Number:i,WareHouseId:From_warehouse});
       if(!myItem[i]){
         throw new BadRequestError(`carton number ${i} for ${item.title} is not available `)
       }
-      await ContainedItems.findOneAndUpdate(WareHouseItem._id,{WareHouseId:ToWareHouse},{new:true,runValidators:true})
+      await ContainedItemsModel.findOneAndUpdate(WareHouseItem._id,{WareHouseId:ToWareHouse},{new:true,runValidators:true})
       await AddStockAdjustments.create({item,From_warehouse,ToWareHouse,Carton_number});
   }
   }
 }
+
+
 module.exports={add_New_Item_To_wareHouse,Adjust_wareHouse_Item};
