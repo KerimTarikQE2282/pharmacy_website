@@ -10,24 +10,22 @@ const ContainedItems = new Schema({
     },
     Carton_Number:{
         type:Number,
-        required:[true,"please provide from carton number value "]
+        required:[true,"please provide  carton number value "]
     },
-    ItemEntryToWareHouseDate:{
+    ItemEntryToWareHouseDate:[{
         type:Date,
         default:Date.now
-    },
-    ItemExitoutOFWareHouseDate:{
-        type:Date,
-        
-    },
-    itemWentTo:{
-type:mongoose.Types.ObjectId,
+    }],
+    
+    itemWentTo:[{
+       type:mongoose.Types.ObjectId,
         ref:'WareHouse'
-    },
+    }], 
     StoredAt:{
         type:Schema.Types.ObjectId,
         ref:'WareHouse'
     }
-});
+},
+{timestamps: true});
 
 module.exports = mongoose.model('ContainedItemsModel', ContainedItems);
