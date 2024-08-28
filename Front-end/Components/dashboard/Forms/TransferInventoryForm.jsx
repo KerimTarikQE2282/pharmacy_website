@@ -5,9 +5,13 @@ import TextInput from "@/Components/FormInputs/TextInput";
 import SubumitButton from "@/Components/FormInputs/SubumitButton";
 import TextAreaInputs from "@/Components/FormInputs/TextAreaInputs";
 import SelectComponent from "@/Components/FormInputs/SelectComponent";
-import { makePOSTApiRequest } from "@/lib/apiRequest";
 import toast from "react-hot-toast";
-export default function TransferInventoryForm({items,WareHouses}) {
+import { makePOSTApiRequest } from "@/actions/StoreGeneralCrudRequests";
+import { connect } from "react-redux";
+
+
+
+function TransferInventoryForm({items,WareHouses,makePOSTApiRequest}) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [loading,setLoading]=React.useState(false)
   async function onSubmit(data){
@@ -70,3 +74,14 @@ export default function TransferInventoryForm({items,WareHouses}) {
     
   )
 }
+
+const mapStateToProps=(state)=>({
+
+})
+
+
+
+
+
+
+export default connect(mapStateToProps, { makePOSTApiRequest })(TransferInventoryForm)
