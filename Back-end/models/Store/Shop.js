@@ -14,10 +14,7 @@ const storeSchema = new Schema({
     type: String,
     default: null,
   },
-  StoreType: {
-    type: String,
-    default: null,
-  }
+ 
 });
 
 module.exports = mongoose.model('Store', storeSchema);

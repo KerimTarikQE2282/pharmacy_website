@@ -24,8 +24,8 @@ const add_New_Item_To_wareHouse = async (req,res) => {
       throw new BadRequestError("please provide valid item and/or WareHouse")
     }
 
-      const start=item_set.from_Carton_Number
-      const end=item_set. to_Carton_Number
+      const start=parseInt(item_set.from_Carton_Number)
+      const end=parseInt(item_set.to_Carton_Number)
       if(start>end){
         throw new BadRequestError("please provide valid carton numbers")
       }
@@ -49,7 +49,7 @@ const add_New_Item_To_wareHouse = async (req,res) => {
     }
     await ContainedItemsModel.create({
       item: item_set.item,
-      Carton_Number: item_set.Carton_number,
+      Carton_Number: parseInt(item_set.Carton_number),
       StoredAt: item_set.To_WareHouse,
       itemWentTo: [item_set.To_WareHouse] // Directly set the array with the initial value
   });
@@ -63,8 +63,10 @@ const add_New_Item_To_wareHouse = async (req,res) => {
 
 
 const Adjust_wareHouse_Item=async (req,res)=>{
+  console.log("🚀 ==> file: WareHouseAdjustments.js:68 ==> constAdjust_wareHouse_Item= ==> req.body:", req.body);
 
-  const {item,From_warehouse,To_WareHouse,MyCarton_number,from_Carton_Number,to_Carton_Number}=req.body;
+  const {item,From_warehouse,To_WareHouse,Carton_number,from_Carton_Number,to_Carton_Number}=req.body;
+ const MyCarton_number=Carton_number
 
 
   if(!item || !MyCarton_number || !To_WareHouse || !From_warehouse){
