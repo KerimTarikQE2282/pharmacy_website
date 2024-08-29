@@ -21,7 +21,7 @@ console.log("🚀 ==> file: SelectComponent.jsx:5 ==> SelectComponent ==> option
         >
          
           {options.map(option => (
-            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name} value={option.id}>
+            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name || option.WareHouseName} value={option.id || option._id}>
               {option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name}
             </option>
           ))}

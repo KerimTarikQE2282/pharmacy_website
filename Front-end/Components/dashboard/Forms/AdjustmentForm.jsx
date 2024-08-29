@@ -1,7 +1,7 @@
 'use client'
 import { useForm } from "react-hook-form";
 import React from 'react';
-import FormHeaders from "@/app/(back-office)/dashboard/inventory/InventoryComponents/FormHeaders";
+import FormHeader from '@/Components/dashboard/FormHeaders';
 import TransferInventoryForm from "./TransferInventoryForm";
 import { MinusCircle, PlusCircle, Truck } from "lucide-react";
 import AddinventoryForm from "./AddInventoryForm";
@@ -41,7 +41,7 @@ export default  function NewAdjustments({items,WareHouses}) {
   return (
     <div>
       {/* { header } */}
-      <FormHeaders title="New Stock Transfer" link={'/dashboard/inventory/adjustments'} />
+      <FormHeader title="New Stock Transfer" link={'/dashboard/inventory/adjustments'} />
       <div >
       <div className="border-b border-gray-200 dark:border-gray-700 w-full max-w-4xl px-4 py-2 bg-white border   dark:bg-gray-800  mx-auto my-3 hadow-lg rounded-md">
     <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
