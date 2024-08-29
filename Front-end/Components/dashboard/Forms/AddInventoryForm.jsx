@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 
 function AddinventoryForm({items,WareHouses,makePOSTApiRequest}) {
   const [selection, setSelection] = React.useState('single');
-
+  
 
   
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -26,6 +26,7 @@ function AddinventoryForm({items,WareHouses,makePOSTApiRequest}) {
           makePOSTApiRequest('WareHouseAdjustments/',setLoading,data,'Inventory')
   
     }
+    
     console.log('from add inevntory form',items)
     return (
   
@@ -57,15 +58,16 @@ function AddinventoryForm({items,WareHouses,makePOSTApiRequest}) {
             </div>
             <br/>
             {selection === 'single' && (
+              
                 <div>
-                 
+                
                   <TextInput  label="Add carton number" name="Carton_number"  type="number"  width=''   register={register}  errors={errors}/>
                 </div>
             )}
 
             {selection === 'multiple' && (
               <>
-                 
+               
                  <div className="w-[18vw]">                
                    <TextInput  label="Add from carton number" name="from_Carton_Number"  type="number"    register={register}  errors={errors}/>
                  </div>

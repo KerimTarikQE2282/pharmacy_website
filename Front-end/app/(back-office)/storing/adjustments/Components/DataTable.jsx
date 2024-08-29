@@ -1,29 +1,17 @@
 "use client"
 import { Columns, Pencil, Trash } from 'lucide-react'
-import Link from 'next/link'
 import React from 'react'
-import DeleteBtn from '../../app/(back-office)/GeneralComponents/DeleteBtn'
 import { useGetData } from '@/hooks/useGetData'
-import Loader from '../../Components/dashboard/Loader'
+import Loader from '@/Components/dashboard/Loader'
 import 'react-loading-skeleton/dist/skeleton.css'
-import exportFromJSON from 'export-from-json'
+
 export default function DataTable({name,columns=[''],resourceTitle}) {
 
   const {isLoading,data,isError,error,isFetching}=useGetData(name);
+  console.log("🚀 ==> file: DataTable.jsx:11 ==> DataTable ==> data:", data);
 
-  const Data=data?.data?.[name]
-  console.log("🚀 ==> file: DataTable.jsx:15 ==> DataTable ==> Data:", typeof Data);
+  const Data=data?.data
 
-  console.log("🚀 ==> file: DataTable.jsx:15 ==> DataTable ==> Data:", Data);
-
- 
-
-  const exportJson=()=>{
-    const fileName = 'name_data'
-const exportType =  exportFromJSON.types.csv
-
-exportFromJSON({ data:Data, fileName, exportType })
-  }
   
   if(isLoading){
     return (
@@ -36,7 +24,6 @@ else{
   return (
   
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <button onClick={exportJson}>download</button>
        <table className="w-full text-sm text-left  text-gray-500 dark:text-gray-400">
            <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
                <tr  >
@@ -47,8 +34,7 @@ else{
                        )
                    })
                  }
-              <th>Edit</th>
-              <th>Delete</th>
+         
               
                </tr>
            </thead>
@@ -91,13 +77,13 @@ else{
                    ))}
                     
                   
-                  <td className=" py-4 flex gap-10  ">
+                  {/* <td className=" py-4 flex gap-10  ">
                        <Link href={`/storing/${resourceTitle}/update/${mydata._id}`} className='font-medium text-blue item-center space-x-2 text-blue-500'><Pencil className='text'/></Link>
                       
                    </td>
                    <td>
                   <DeleteBtn resourceTitle={resourceTitle} id={mydata?._id}/>
-                   </td>
+                   </td> */}
                </tr>
            )
        })
