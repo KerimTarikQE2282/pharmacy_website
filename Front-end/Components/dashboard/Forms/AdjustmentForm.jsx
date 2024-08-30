@@ -41,7 +41,7 @@ export default  function NewAdjustments({items,WareHouses}) {
   return (
     <div>
       {/* { header } */}
-      <FormHeader title="New Stock Transfer" link={'/dashboard/inventory/adjustments'} />
+      <FormHeader title="Stock Transfer" link={'/dashboard/inventory/adjustments'} />
       <div >
       <div className="border-b border-gray-200 dark:border-gray-700 w-full max-w-4xl px-4 py-2 bg-white border   dark:bg-gray-800  mx-auto my-3 hadow-lg rounded-md">
     <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">

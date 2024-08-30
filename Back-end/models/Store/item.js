@@ -64,7 +64,6 @@ const itemSchema=new mongoose.Schema({
       },
       imagesUrl: {
         type: String,
-        required: [true, 'Please provide item imagesUrl'],
             },
      weight: {
         type: String,

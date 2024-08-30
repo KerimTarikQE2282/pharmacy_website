@@ -12,6 +12,7 @@ export default  function Brands() {
       <div>
           <TabelNavBar link='/storing/Brands/new' title='Brands'/>
          <div className='my-4 p-8'>
+          
       <DataTable name='brands' columns={columns} resourceTitle='Brands'/>
   
       </div>

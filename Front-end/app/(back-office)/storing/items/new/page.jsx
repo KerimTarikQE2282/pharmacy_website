@@ -10,6 +10,7 @@ export default function NewItem(props) {
   const [categories, setCategories] = useState([]);
   const [units, setUnits] = useState([]);
   const [brands, setBrands] = useState([]);
+
   const [warehouses, setWarehouses] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
 
@@ -26,9 +27,9 @@ export default function NewItem(props) {
 
         setCategories(CategoriesData.category);
         setUnits(UnitsData.unit);
-        setBrands(BrandData.brand);
+        setBrands(BrandData.brands);
         setWarehouses(WareHouseData.WareHouse);
-        setSuppliers(SupplierData.supplier);
+        setSuppliers(SupplierData.suppliers);
       } catch (error) {
         console.error("Error fetching data", error);
       }
@@ -36,6 +37,7 @@ export default function NewItem(props) {
 
     fetchData();
   }, []); // Empty dependency array means this runs once when the component mounts.
+  console.log("🚀 ==> file: page.jsx:13 ==> NewItem ==> brands:", brands);
 
   return (
     <div>
