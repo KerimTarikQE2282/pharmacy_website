@@ -9,7 +9,7 @@ const baseUrl = 'http://localhost:3002/api/v1/';
 
 export const makePOSTApiRequest = (endpoint,setLoading,data,name) => async dispatch => {
   setLoading(true);
-
+  console.log('item addddd 222222')
   const url=`${baseUrl}${endpoint}`
 
   console.log("🚀 ==> file: StoreGeneralCrudRequests.js:13 ==> makePOSTApiRequest ==> url:", url);
@@ -60,6 +60,7 @@ dispatch({
 
 
 export const makePUTApiRequest = (endpoint,setLoading,data,name) => async dispatch => {
+  console.log(` frommmmmmmmmmmmmmmmmmmmmmmmmmmmmmm update api endpoint ${endpoint}${baseUrl}${endpoint}`)
 setLoading(true)
      const config = {
         headers: {

@@ -2,7 +2,6 @@
 import React from 'react'
 
 export default function SelectComponent({ name, label, register, error, className, options=[] }) {
-console.log("🚀 ==> file: SelectComponent.jsx:5 ==> SelectComponent ==> options:", options);
 
 
 

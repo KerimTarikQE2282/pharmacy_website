@@ -1,9 +1,7 @@
 "use client"
-import DataTable from '@/Components/dashboard/DataTable'
+import DataTable from './Components/Table'
 import TabelNavBar from '@/Components/TabelNavBar'
-import { getData } from '@/actions/storeActions/StoreGeneralCrudRequests/getData'
 import React from 'react'
-import { useGetData } from '@/hooks/useGetData'
 
 export default function WareHouse() {
   const columns=['WareHouseName','WareHouseLocation','WareHouseType']
