@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const unitController = require('../controllers/unitController');
 
-router.post('/', unitController.createUnit);
-router.get('/', unitController.getAllUnits);
 
-router.get('/:id', unitController.getUnitById);
 
-router.put('/:id', unitController.updateUnitById);
+const { getAllUnits,getUnitById,createUnit,updateUnitById ,deleteUnitById,searchUnit} = require('../../Controllers/StoreControllers/units');  
 
-router.delete('/:id', unitController.deleteUnitById);
+// Define routes
+router.route('/').get(getAllUnits).post(createUnit)
+router.route('/:id').get(getUnitById).patch(updateUnitById).delete(deleteUnitById)
+router.route('/search').post(searchUnit)
 
 module.exports = router;

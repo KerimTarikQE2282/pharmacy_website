@@ -1,4 +1,4 @@
-import { BaggageClaim, Box, Boxes, Building2, ChevronDown, ChevronRight, Codesandbox, Contact, Edit, Factory, PlusCircle, Ruler, Wallpaper, Warehouse } from 'lucide-react';
+import { BaggageClaim, Box, Boxes, Building2, ChevronDown, ChevronRight, Codesandbox, Contact, Edit, Factory, PlusCircle, Ruler, Store, Wallpaper, Warehouse } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 import {
@@ -8,7 +8,7 @@ import {
   } from "@/components/ui/collapsible"
 function InventorySideBarComponent() {
     const [inventoryOpen,setInventoryopen]=React.useState(false)
-
+    
     const inventoryLinks=[
       {
         name:"All",
@@ -32,7 +32,7 @@ function InventorySideBarComponent() {
       },
       {
         name:"Units",
-        link:"/storing/units/",
+        link:"/storing/unit/",
         icon:<Ruler className='w-4 h-4'/>
       },
       {
@@ -44,6 +44,11 @@ function InventorySideBarComponent() {
         name:"Inventory Adjustments",
         link:"/storing/adjustments/",
         icon:<Edit className='w-4 h-4'/>
+      },
+      {
+        name:"Stores",
+        link:"/storing/stores/new",
+        icon:<Store className='w-4 h-4'/>
       },
       // {
       //   name:"Composite items",

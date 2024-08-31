@@ -1,18 +1,11 @@
 'use client'
-
-import { useRef } from "react"
 import { Provider } from "react-redux"
-import { makeStore } from "@/lib/store"
-
-
-
-
-export default function StoreProvider() {
-    const storeRef=useRef()
-if(!storeRef.current){
-    storeRef.current=makeStore()
-}
-  return (
-    <Provider store={storeRef.current}>{children}</Provider>
+import ReactQueryProvider from "./ReactQueryProviders"
+import Store from '../lib/store'
+export default function StoreProvider({children}) {
+return (
+    <ReactQueryProvider>
+    <Provider store={Store}>{children}</Provider>
+    </ReactQueryProvider>
   )
 }

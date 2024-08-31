@@ -19,5 +19,5 @@ const warehouseSchema = new Schema({
     default: null,
   }
 });
-
+//TODO Add Capacity
 module.exports = mongoose.model('WareHouse', warehouseSchema);

@@ -1,3 +1,4 @@
+"use client"
 import {
 LOGIN_SUCCESS,
 LOGIN_FAIL,
@@ -17,14 +18,14 @@ LOGOUT,
 
 
 const initialState={
-// access:localStorage.getItem('access'),
-// refresh:localStorage.getItem('refresh'),
-// isAuthenticated:null,
-// user:null,
+    isAuthenticated:null,
+    access:global?.window?.localStorage.getItem('INVENTORY_USER'),
+    user:global?.window?.localStorage.getItem('INVENTORY_USER' || null),
 }
 
 export default function(state=initialState,action){
     const {type,payload}=action
+
     
     switch(type){
         case AUTHENTICATED_SUCCESS:
@@ -35,11 +36,13 @@ export default function(state=initialState,action){
 
         case LOGIN_SUCCESS:
             localStorage.setItem('access',payload.access)
+            global.window.localStorage.setItem('INVENTORY_USER',JSON.stringify(payload.user))
+            global.window.localStorage.setItem('INVENTORY_USER_TOKEN',JSON.stringify(payload.access))
             return{
                 ...state,
                 isAuthenticated:true,/**changed */
                 access:payload.access,
-                refresh:payload.refresh
+                user:payload.user
             }
         case USER_LOADED_SUCCESS:
             return{

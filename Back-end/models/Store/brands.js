@@ -6,7 +6,7 @@ const brandSchema = mongoose.Schema({
    
     BrandName: {
       type: String,
-      required: [true, 'Please provide item description'],
+      required: [true, 'Please provide brand description'],
     }
    
   }, {

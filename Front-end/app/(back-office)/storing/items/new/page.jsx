@@ -1,40 +1,57 @@
-
-
-import React from 'react';
-import FormHeader from '../../InventoryComponents/FormHeaders';
+"use client"
+import React, { useEffect, useState } from 'react';
+import FormHeader from '../../../../../Components/dashboard/FormHeaders';
 import CreateItemFrom from '@/Components/dashboard/Forms/CreateItemFrom';
 import { getData } from "@/actions/storeActions/StoreGeneralCrudRequests/getData";
 
-export default async function NewItem(props) {
-  
-const {initialData,isupdate}=props
-  const CategoriesData= getData('Categories');
-  const UnitsData= getData('Units')
-  const BrandDatas= getData('Brand')
-  const WareHouseData= getData('WareHouse')
-  const SupplierData= getData('Supplier')
+export default function NewItem(props) {
+  const { initialData, isupdate } = props;
 
-  const [Categories,Units,Brands,WareHouse,Supplier]=await Promise.all([CategoriesData,UnitsData,BrandDatas,WareHouseData,SupplierData])
-  console.log('my props,',initialData)
+  const [categories, setCategories] = useState([]);
+  const [units, setUnits] = useState([]);
+  const [brands, setBrands] = useState([]);
+
+  const [warehouses, setWarehouses] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [CategoriesData, UnitsData, BrandData, WareHouseData, SupplierData] = await Promise.all([
+          getData('category'),
+          getData('unit'),
+          getData('brands'),
+          getData('WareHouse'),
+          getData('supplier')
+        ]);
+
+        setCategories(CategoriesData.category);
+        setUnits(UnitsData.unit);
+        setBrands(BrandData.brands);
+        setWarehouses(WareHouseData.WareHouse);
+        setSuppliers(SupplierData.suppliers);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array means this runs once when the component mounts.
+  console.log("🚀 ==> file: page.jsx:13 ==> NewItem ==> brands:", brands);
 
   return (
     <div>
-   {/* { header } */}
-<FormHeader  title={`${isupdate?'Update Item':'New Item'}`} link={'/dashboard/inventory/items'} />
+      <FormHeader title={`${isupdate ? 'Update Item' : 'New Item'}`} link={'/dashboard/inventory/items'} />
 
-      {/* { Form } */}
-
-
- <CreateItemFrom 
-categories={Categories}
-units={Units}
-brands={Brands}
-warehouses={WareHouse}
-suppliers={Supplier}
-initialData={initialData}
-isupdate={isupdate}
-/>
+      <CreateItemFrom
+        categories={categories}
+        units={units}
+        brands={brands}
+        warehouses={warehouses}
+        suppliers={suppliers}
+        initialData={initialData}
+        isupdate={isupdate}
+      />
     </div>
-
-  )
+  );
 }

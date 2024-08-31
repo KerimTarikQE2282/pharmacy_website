@@ -4,6 +4,7 @@ import React from 'react'
 export default function SelectComponent({ name, label, register, error, className, options=[] }) {
 
 
+
     return (
       <div>
         <label 
@@ -19,7 +20,7 @@ export default function SelectComponent({ name, label, register, error, classNam
         >
          
           {options.map(option => (
-            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name} value={option.id}>
+            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name || option.WareHouseName} value={option.id || option._id}>
               {option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name}
             </option>
           ))}
