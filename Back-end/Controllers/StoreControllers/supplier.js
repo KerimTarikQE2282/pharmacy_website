@@ -59,4 +59,33 @@ const getSupplierById = async (req, res) => {
   };
 
 
-module.exports = { getAllSuppliers,getSupplierById,createSupplier,UpdateSupplier,deleteSupplier};
+  const searchSupplier = async (req, res) => {
+  
+      const { query } = req.query;
+  
+      if (!query) {
+        return res.status(400).json({ error: 'Please provide a search query.' });
+      }
+  
+      const suppliers = await Supplier.find({
+        $or: [
+          { name: { $regex: query, $options: 'i' } },
+          { phone: { $regex: query, $options: 'i' } },
+          { email: { $regex: query, $options: 'i' } }
+        ]
+      })
+      .populate('items');
+  
+      if (suppliers.length === 0) {
+        return res.status(404).json({ message: 'No suppliers found.' });
+      }
+  
+      res.status(200).json(suppliers);
+  
+  };
+  
+  module.exports = {
+    searchSupplier,
+  };
+  
+module.exports = { getAllSuppliers,getSupplierById,createSupplier,UpdateSupplier,deleteSupplier,searchSupplier};

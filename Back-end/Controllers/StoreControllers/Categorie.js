@@ -69,10 +69,34 @@ const deleteCategoryById = async (req, res) => {
   res.status(StatusCodes.OK).json({ Deleted: true });
 };
 
+
+const searchCategory = async (req, res) => {
+
+  const { Name } = req.body;
+  console.log("🚀 ==> file: Categorie.js:76 ==> searchCategory ==> Name:",  req.query);
+
+
+  if (!Name) {
+    return res.status(400).json({ error: 'Please provide a search query.' });
+  }
+
+  const categories = await Category.find({
+    title: { $regex: Name, $options: 'i' }
+  });
+
+  if (categories.length === 0) {
+    return res.status(404).json({ message: 'No categories found.' });
+  }
+
+  res.status(200).json(categories);
+
+};
+
 module.exports = {
   getAllCategories,
   getCategoryById,
   createCategory,
   updateCategoryById,
-  deleteCategoryById
+  deleteCategoryById,
+  searchCategory
 };

@@ -87,4 +87,27 @@ const searchByLocation = async (req, res) => {
   }
 };
 
+const searchWareHouse = async (req, res) => {
+
+  const { query } = req.query;
+
+  if (!query) {
+    return res.status(400).json({ error: 'Please provide a search query.' });
+  }
+
+  const warehouses = await WareHouse.find({
+    $or: [
+      { WareHouseName: { $regex: query, $options: 'i' } },
+      { WareHouseLocation: { $regex: query, $options: 'i' } }
+    ]
+  });
+
+  if (warehouses.length === 0) {
+    return res.status(404).json({ message: 'No warehouses found.' });
+  }
+
+  res.status(200).json(warehouses);
+
+};
+
 module.exports = { getAllWarehouses, createWarehouse, updateWarehouse, deleteWarehouse, getWarehouseById, searchByLocation };

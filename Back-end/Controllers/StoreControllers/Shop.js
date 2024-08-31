@@ -71,20 +71,29 @@ const getStoreById = async (req, res) => {
   }
 };
 
-const searchByLocation = async (req, res) => {
-  try {
-    const { location } = req.params;
-    const stores = await Store.find({ StoreLocation: location });
 
-    if (stores.length === 0) {
-      return res.status(404).json({ message: "No stores found at this location." });
-    }
 
-    res.status(200).json({ stores });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'An error occurred while searching for stores by location' });
+const searchStore = async (req, res) => {
+
+  const { Name } = req.body;
+
+  if (!Name) {
+    return res.status(400).json({ error: 'Please provide a search query.' });
   }
+  const stores = await Store.find({
+    $or: [
+      { StoreName: { $regex: Name, $options: 'i' } },
+      { StoreLocation: { $regex: Name, $options: 'i' } }
+    ]
+  });
+  
+
+  if (stores.length === 0) {
+    return res.status(404).json({ message: 'No stores found.' });
+  }
+
+  res.status(200).json(stores);
+
 };
 
-module.exports = { getAllStores, createStore, updateStore, deleteStore, getStoreById, searchByLocation };
+module.exports = { getAllStores, createStore, updateStore, deleteStore, getStoreById,searchStore  };
