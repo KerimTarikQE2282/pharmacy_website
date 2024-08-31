@@ -71,18 +71,20 @@ const getAllUnits = async (req, res) => {
         res.status(StatusCodes.OK).json(UpdatedUnit);
       };
 
-    const searchUnit = async (req, res) => {
+const searchUnit = async (req, res) => {
 
-        const { query } = req.query;
+        const {Name}  = req.body;
+        console.log("🚀 ==> file: units.js:77 ==> searchUnit ==> req.body:", req.body);
+
     
-        if (!query) {
+        if (!Name) {
           return res.status(400).json({ error: 'Please provide a search query.' });
         }
     
         const units = await Unit.find({
           $or: [
-            { UnitName: { $regex: query, $options: 'i' } },
-            { UnitAbreviation: { $regex: query, $options: 'i' } }
+            { UnitName: { $regex: Name, $options: 'i' } },
+            { UnitAbreviation: { $regex: Name, $options: 'i' } }
           ]
         });
     
@@ -93,7 +95,7 @@ const getAllUnits = async (req, res) => {
         res.status(200).json(units);
     
     };
-    module.exports = { getAllUnits,getUnitById,createUnit,updateUnitById ,deleteUnitById,searchUnit};  
+module.exports = { getAllUnits,getUnitById,createUnit,updateUnitById ,deleteUnitById,searchUnit};  
 
 
 

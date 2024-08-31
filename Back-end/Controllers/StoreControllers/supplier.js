@@ -61,17 +61,17 @@ const getSupplierById = async (req, res) => {
 
   const searchSupplier = async (req, res) => {
   
-      const { query } = req.query;
+      const Name  = req.body;
   
-      if (!query) {
+      if (!Name) {
         return res.status(400).json({ error: 'Please provide a search query.' });
       }
   
       const suppliers = await Supplier.find({
         $or: [
-          { name: { $regex: query, $options: 'i' } },
-          { phone: { $regex: query, $options: 'i' } },
-          { email: { $regex: query, $options: 'i' } }
+          { name: { $regex: Name, $options: 'i' } },
+          { phone: { $regex: Name, $options: 'i' } },
+          { email: { $regex: Name, $options: 'i' } }
         ]
       })
       .populate('items');

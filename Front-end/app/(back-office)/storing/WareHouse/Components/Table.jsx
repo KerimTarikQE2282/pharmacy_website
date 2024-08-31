@@ -10,7 +10,6 @@ import Router from 'next/navigation'
 import exportFromJSON from 'export-from-json'
 import { useRouter } from 'next/router'
 export default function DataTable({name,columns=[''],resourceTitle}) {
-    const route=useRouter()
   const {isLoading,data,isError,error,isFetching}=useGetData(name);
 
   const Data=data?.data?.[name]
