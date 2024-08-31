@@ -66,10 +66,38 @@ const deleteBrandById = async (req, res) => {
   res.status(StatusCodes.OK).json({ Deleted: true });
 };
 
+
+const searchBrand = async (req, res) => {
+
+    const { Name } = req.body;
+    console.log("🚀 ==> file: brand.js:73 ==> searchBrand ==> Name:", Name);
+
+
+    if (!Name) {
+      return res.status(400).json({ error: 'Please provide a search query.' });
+    }
+
+    const brands = await Brand.find({
+      BrandName: { $regex: Name, $options: 'i' }
+    });
+
+    if (brands.length === 0) {
+      return res.status(404).json({ message: 'No brands found.' });
+    }
+
+    res.status(200).json(brands);
+ 
+};
+
+
+
+
+
 module.exports = {
   getAllBrands,
   getBrandById,
   createBrand,
   updateBrandById,
-  deleteBrandById
+  deleteBrandById,
+  searchBrand
 };

@@ -16,7 +16,6 @@ const WareHouseAdjustments=require('./Routes/Store/Inventory_Adjustments')
 const unit=require('./Routes/Store/unit')
 const category=require('./Routes/Store/category')
 const store=require('./Routes/Store/store')
-
 //middlewares
 const errorhandler=require('./middleware/error-handler')
 const notfound=require('./middleware/not-found')
@@ -56,7 +55,6 @@ app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
 app.use('/api/v1/unit',unit)
 app.use('/api/v1/category',category)
 app.use('/api/v1/stores',store)
-app.use('/api/v1/brands',brand)
 //custom middlewares
 
 app.use(notfound)

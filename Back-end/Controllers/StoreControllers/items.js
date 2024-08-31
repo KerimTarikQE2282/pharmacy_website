@@ -53,7 +53,33 @@ const removeItems=async(req,res)=>{
 }
 
 
+const searchItem = async (req, res) => {
+
+    const { Name } = req.body;
+
+    if (!Name) {
+      return res.status(400).json({ error: 'Please provide a search query.' });
+    }
+
+    const items = await Item.find({
+      title: { $regex: Name, $options: 'i' }
+    })
+    .populate('category')
+    .populate('unit')
+    .populate('brand')
+    .populate('supplier');
+
+    if (items.length === 0) {
+      return res.status(404).json({ message: 'No items found.' });
+    }
+
+    res.status(200).json(items);
+
+};
 
 
-  module.exports = { addItem,getAllItems,getItemsByID,updateItems,removeItems};
+
+
+
+  module.exports = { addItem,getAllItems,getItemsByID,updateItems,removeItems,searchItem};
   
