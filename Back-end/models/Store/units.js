@@ -9,11 +9,7 @@ const unitSchema = new Schema({
   UnitAbreviation: {
     type: String,
     default: null,
-  },
-  items: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Item'
-  }]
+  }
 }, {
   timestamps: true
 });
