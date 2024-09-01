@@ -17,7 +17,7 @@ const WareHouseAdjustments=require('./Routes/Store/Inventory_Adjustments')
 const unit=require('./Routes/Store/unit')
 const category=require('./Routes/Store/category')
 const store=require('./Routes/Store/store')
-
+const customer =require('./Routes/Sale/Customer')
 //middlewares
 const errorhandler=require('./middleware/error-handler')
 const notfound=require('./middleware/not-found')
@@ -29,8 +29,7 @@ const helmet = require('helmet');
 const xss = require('xss-clean');
 const rateLimit=require('express-rate-limit')
 
-const WareHouse=require('./Routes/warehouse')
-const Units=require('./Routes/Store/unit')
+
 //using packages
 //app.use(rateLimit({
 //     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -51,16 +50,17 @@ app.use('/api/v1',auth)
 app.use('/api/v1/brands',brand)
 app.use('/api/v1/supplier',supplier)
 app.use('/api/v1/items',items)
-app.use('/api/v1/SingleItemSale',SingleßItemSale)
+app.use('/api/v1/SingleItemSale',SingleItemSale)
 app.use('/api/v1/GeneralSales/',GeneralSales)
 app.use('/api/v1/WareHouse/',WareHouse)
-
+app.use('/api/v1/units/',unit)
 app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
 app.use('/api/v1/unit',unit)
 app.use('/api/v1/category',category)
 app.use('/api/v1/stores',store)
+app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
+app.use('/api/v1/customer/',customer)
 
-app.use('/api/v1/units/',Units)
 //custom middlewares
 
 app.use(notfound)

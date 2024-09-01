@@ -1,25 +1,27 @@
-const Customer = require('../models/Customer'); 
+const { StatusCodes } = require('http-status-codes');
+const Customer = require('../../models/Store/Customer'); 
 
-const Create = async (req, res) => {
-    
-        const { customerName, phone1, phone2, address1, address2, registeredBy } = req.body;
 
-        if (!customerName || !phone1 || !address1 || !registeredBy) {
-            return res.status(400).json({ msg: "Please provide all required fields" });
-        }
 
-        const newCustomer = await Customer.create({
-            customerName,
-            phone1,
-            phone2,
-            address1,
-            address2,
-            registeredBy,
-        });
+const addCustomer = async (req,res) => {
+    const myNewCustomer=await Customer.create(req.body)
+    res.status(StatusCodes.OK).json(myNewCustomer)
+  }
 
-        res.status(201).json({ customer: newCustomer });
-    
-};
+  
+const getAllCustomer=async(req,res)=>{
+    const AllCustomer=await Customer.find({})
+    res.status(StatusCodes.OK).json({Customer:AllCustomer,lenght:AllCustomer.length})
+  }
+const getCustomerByID=async (req,res)=>{
+    const {id}=req.params;
+    if(!id){
+      throw new BadRequestError("please provide Id")
+    }
+    const MyCustomer=await Customer.findOne({_id:id})
+    res.status(StatusCodes.OK).json(MyCustomer);
+  }
+
 
 const Update = async (req, res) => {
     
@@ -72,7 +74,10 @@ const Delete = async (req, res) => {
 };
 
 module.exports = {
-    Create,
+    addCustomer,
+    getAllCustomer,
+    getCustomerByID,
+    
     Update,
     Edit,
     Delete,
