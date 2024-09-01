@@ -9,6 +9,6 @@ router.route('/').post(add_New_Item_To_wareHouse)
 router.route('/adjust').post(Adjust_wareHouse_Item)
 router.route('/NewItems').get(WareHouseAddedItems)
 router.route('/AllStock').get(WareHouseTransferedItems)
-router.route('/sendtostore').get(Send_Item_to_Store)
+router.route('/sendtostore').post(Send_Item_to_Store)
 
 module.exports = router;
