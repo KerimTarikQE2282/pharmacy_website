@@ -16,7 +16,9 @@ export default function DataTable({ name, columns = [''], resourceTitle }) {
 
   const { isLoading, data, isError, error, isFetching } = useGetData(name);
 
+
   const [Data, setData] = useState([]);
+
 
   useEffect(() => {
     if (data) {
@@ -37,6 +39,7 @@ export default function DataTable({ name, columns = [''], resourceTitle }) {
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   }
+  console.log("🚀 ==> file: DataTable.jsx:22 ==> DataTable ==> Data:", Data);
 
   const exportJson = () => {
     const fileName = 'name_data';

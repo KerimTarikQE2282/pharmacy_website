@@ -47,7 +47,7 @@ function InventorySideBarComponent() {
       },
       {
         name:"Stores",
-        link:"/storing/stores/new",
+        link:"/storing/stores",
         icon:<Store className='w-4 h-4'/>
       },
       // {

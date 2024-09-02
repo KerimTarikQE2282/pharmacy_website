@@ -1,52 +1,121 @@
-"use client"
-import FormHeaders from '@/app/(back-office)/GeneralComponents/FormHeaders'
-import SubumitButton from '@/Components/FormInputs/SubumitButton';
-import TextAreaInputs from '@/Components/FormInputs/TextAreaInputs';
-import TextInput from '@/Components/FormInputs/TextInput'
-import { useRouter } from "next/navigation";
-import React from 'react'
-import { useForm } from 'react-hook-form';
+"use client";
 
-export default function NewCustomer(isupdate=false,initialData='') {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const [loading,setLoading]=React.useState(false)
-  const router=useRouter()
-  function onSubmit(data) {
-      console.log(data)
+import React from 'react';
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { connect } from "react-redux";
+import FormHeader from '../../../../../Components/dashboard/FormHeaders';
+import TextInput from "@/Components/FormInputs/TextInput";
+import SubumitButton from "@/Components/FormInputs/SubumitButton";
+import { makePUTApiRequest, makePOSTApiRequest } from '../../../../../actions/StoreGeneralCrudRequests';
+import { useGetDataById } from "@/hooks/useGetDataById";
+
+
+function NewCustomer({ initialData, isupdate = false, makePOSTApiRequest, makePUTApiRequest }) {
+  console.log("🚀 ==> file: page.jsx:14 ==> NewBrand ==> initialData:", initialData);
+
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: initialData, // Set initial data as default values
+  });
+
+
+
+  // Handle form submission
+  async function onSubmit(formData) {
+    setLoading(true);
+    try {
+      if (isupdate) {
+        // Update existing record
+        const done = await makePUTApiRequest(`Customer/${initialData._id}`, setLoading, formData, 'brands');
+        if (done === true) {
+          router.replace('/storing/Brands');
+        }
+      } else {
+        // Create new record
+        await makePOSTApiRequest('Customer', setLoading, formData, 'customer');
+        router.replace('/selling/customer');
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
-  console.log('is update', isupdate)
-  if(isupdate){
-    console.log('why is this running ')
-  }
+
+
+
   return (
     <div>
-      <FormHeaders title={`${(isupdate==true)?'Update Customer Information':'Add New Customer'}`} link={'/selling/customer'} />
-
-
+       <FormHeader title={`${isupdate ? 'Update Customer' : 'New Customer'}`} link={'/dashboard/customers'} />
       <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
         <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>
-         <TextInput label="Customer Name" name="CustomerName"  type="text" width='' defaultValue={initialData.CustomerName}   register={register}  errors={errors}/>
-         <TextInput label="Phone 1" name="Phone1"  type="text" width='full' defaultValue={initialData.Phone1}   register={register}  errors={errors}/>
-         <TextInput label="Phone 2" name="Phone2"  type="text" width='full' defaultValue={initialData.Phone2}   register={register}  errors={errors}/>
-         <TextInput label="Address 1" name="Address1"  type="text" width='full' defaultValue={initialData.Address1}   register={register}  errors={errors}/>
-         <TextInput label="Address 2" name="Address2"  type="text" width='full' defaultValue={initialData.Address2}   register={register}  errors={errors}/>
-         <TextInput label="Registered By" name="RegisteredBy"  type="text" width='' defaultValue={initialData.RegisteredBy}   register={register}  errors={errors}/>
-         <TextInput label="Status" name="Status"  type="text" width='' defaultValue={initialData.Status}   register={register}  errors={errors}/>
-         <TextAreaInputs label="Notes" name="notes"  type="text" width='full'  register={register}  errors={errors}/>
-        
-
-        
-
-        
-        
-        
-
-
-
+          <TextInput
+            label="Customer Name"
+            name="customerName"
+            type="text"
+            width="not-full"
+            register={register}
+            errors={errors}
+          />
+          <TextInput
+            label="Phone 1"
+            name="phone1"
+            type="text"
+            width="full"
+            register={register}
+            errors={errors}
+          />
+          <TextInput
+            label="Phone 2"
+            name="phone2"
+            type="text"
+            width="full"
+            register={register}
+            errors={errors}
+          />
+          <TextInput
+            label="Address 1"
+            name="address1"
+            type="text"
+            width="full"
+            register={register}
+            errors={errors}
+          />
+          <TextInput
+            label="Address 2"
+            name="address2"
+            type="text"
+            width="full"
+            register={register}
+            errors={errors}
+          />
+          <TextInput
+            label="Registered By"
+            name="registeredBy"
+            type="text"
+            width="full"
+            register={register}
+            errors={errors}
+          />
+          <TextInput
+            label="Status"
+            name="status"
+            type="text"
+            width="full"
+            register={register}
+            errors={errors}
+            defaultValue={isupdate ? initialData?.status : 'active'}
+          />
         </div>
-       <SubumitButton title={`${isupdate ?'New Customer' :'Updated Customer Info'}`} isLoading={loading}/>
-
+        <SubumitButton title={`${isupdate ? 'Update Customer' : 'New Customer'}`} isLoading={loading} />
       </form>
     </div>
-  )
+  );
 }
+
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { makePOSTApiRequest, makePUTApiRequest })(NewCustomer);
