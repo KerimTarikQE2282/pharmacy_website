@@ -2,6 +2,8 @@
 import React from 'react'
 
 export default function SelectComponent({ name, label, register, error, className, options=[] }) {
+console.log("🚀 ==> file: SelectComponent.jsx:5 ==> SelectComponent ==> options:", options);
+
 
 
 
@@ -20,8 +22,8 @@ export default function SelectComponent({ name, label, register, error, classNam
         >
          
           {options.map(option => (
-            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name || option.WareHouseName} value={option.id || option._id}>
-              {option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name}
+            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name || option.WareHouseName || option.StoreName} value={option.id || option._id}>
+              {option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name ||  option.StoreName}
             </option>
           ))}
         </select>

@@ -5,10 +5,10 @@ import FormHeader from '@/Components/dashboard/FormHeaders';
 import TransferInventoryForm from "./TransferInventoryForm";
 import { MinusCircle, PlusCircle, Truck } from "lucide-react";
 import AddinventoryForm from "./AddInventoryForm";
+import SendToShopFrom from "./SendToShopFrom";
 
 
-
-export default  function NewAdjustments({items,WareHouses}) {
+export default  function NewAdjustments({items,WareHouses,stores}) {
   const [displayedForm,setDisplayedForm]=React.useState("add")
   const tabs=[
     {
@@ -54,12 +54,14 @@ export default  function NewAdjustments({items,WareHouses}) {
 </div>
       </div>
       {
-        displayedForm=="add"?
-        <AddinventoryForm items={items} WareHouses={WareHouses} />
-        :
-        <TransferInventoryForm items={items} WareHouses={WareHouses}/>
-
-      }
+  displayedForm === "add" ? (
+    <AddinventoryForm items={items} WareHouses={WareHouses} />
+  ) : displayedForm === "transfer" ? (
+    <TransferInventoryForm items={items} WareHouses={WareHouses} />
+  ) : displayedForm === "Shop" ? (
+    <SendToShopFrom items={items} WareHouses={WareHouses} stores={stores} />
+  ) : null
+}
 
     </div>
   )

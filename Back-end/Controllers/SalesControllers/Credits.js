@@ -1,73 +1,75 @@
-const Credit = require('../models/Credit');  
- const createCredit = async (req, res) => {
+const Credit = require('../../models/Sale/Credits');
+const StatusCodes = require('http-status-codes');
+const BadRequestError = require('../../errors'); // Adjust the path as necessary
 
-    const newCredit = await Credit.create(req.body);
-
-    if (!newCredit) {
-        return res.status(400).json({
-            success: false,
-            error: "Failed to create credit"
-        });
-    }
-
-    res.status(201).json({
-        success: true,
-        data: newCredit
-    });
-    }
-
-const updateCredit = async (req, res) => {
-    const updatedCredit = await Credit.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true
-    });
-
-    if (!updatedCredit) {
-        return res.status(404).json({
-            success: false,
-            error: "Credit not found"
-        });
-    }
-
-    res.status(200).json({
-        success: true,
-        data: updatedCredit
-    });
+// Create a new credit
+const createCredit = async (req, res) => {
+  const newCredit = await Credit.create(req.body);
+  res.status(StatusCodes.CREATED).json(newCredit);
 };
-const editCredit = async (req, res) => { 
-    const credit = await Credit.findById(req.params.id);
 
-    if (!credit) {
-        return res.status(404).json({
-            success: false,
-            error: "Credit not found"
-        });
-    }
+// Update a credit by ID
+const updateCreditById = async (req, res) => {
+  const { id } = req.params;
+  console.log("🚀 ==> updateCreditById ==> id:", id);
 
-    res.status(200).json({
-        success: true,
-        data: credit
-    });
-const deleteCredit = async (req, res) => {
+  const updateData = req.body;
 
-    const credit = await Credit.findByIdAndDelete(req.params.id);
+  const updatableCredit = await Credit.findById(id);
+  if (!updatableCredit || !id) {
+    throw new BadRequestError("Please provide a valid ID");
+  }
 
-    if (!credit) {
-        return res.status(404).json({
-            success: false,
-            error: "Credit not found"
-        });
-    }
+  const updatedCredit = await Credit.findByIdAndUpdate(id, updateData, {
+    new: true,
+    runValidators: true
+  });
 
-    res.status(200).json({
-        success: true,
-        data: {}
-    });
-  } 
+  console.log("🚀 ==> updateCreditById ==> updateData:", updateData);
+
+  res.status(StatusCodes.OK).json(updatedCredit);
 };
+
+// Fetch a credit by ID
+const getCreditById = async (req, res) => {
+  const { id } = req.params;
+
+  const credit = await Credit.findById(id);
+  if (!credit || !id) {
+    throw new BadRequestError("Please provide a valid ID");
+  }
+
+  res.status(StatusCodes.OK).json(credit);
+};
+
+// Fetch all credits
+const getAllCredits = async (req, res) => {
+  try {
+    const credits = await Credit.find({});
+    res.status(StatusCodes.OK).json({ credits });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'An error occurred while fetching the credits' });
+  }
+};
+
+// Delete a credit by ID
+const deleteCreditById = async (req, res) => {
+  const { id } = req.params;
+
+  const deletableCredit = await Credit.findById(id);
+  if (!deletableCredit || !id) {
+    throw new BadRequestError("Please provide a valid ID");
+  }
+
+  await Credit.findByIdAndDelete(id);
+  res.status(StatusCodes.OK).json({ Deleted: true });
+};
+
 module.exports = {
-    Create,
-    Update,
-    Edit,
-    Delete,
+  createCredit,
+  updateCreditById,
+  getCreditById,
+  getAllCredits,
+  deleteCreditById,
 };

@@ -5,7 +5,8 @@ export async function getData(url) {
             cache:'no-store'
         });
         const data = await response.json();
-        console.log(data)
+        console.log("🚀 ==> file: getData.js:8 ==> getData ==> data:", data);
+
         return data;
     } catch (error) {
         console.log(error)
