@@ -3,7 +3,6 @@ const OrderItem =require('../../models/Sale/OrderItem')
 const { BadRequestError } = require('../../errors')
 
 const addOrderItem=async (req,res)=>{
-    const newOrderItem= await OrderItem.create(req.body)
     res.status(StatusCodes.OK).json(newOrderItem)
 }
 

@@ -2,7 +2,6 @@ const StatusCodes=require('http-status-codes')
 const { BadRequestError } = require('../../errors')
 const ContainedItemsModel=require('../../models/Store/WareHouseItem');
 const { findByIdAndUpdate } = require('../../models/Store/AddStockAdjustemnt');
-const WareHouseItem = require('../../models/Store/WareHouseItem');
 const warehouse = require('../../models/Store/warehouse');
 const itemModel = require('../../models/Store/item');
 
@@ -23,9 +22,23 @@ const add_New_Item_To_wareHouse = async (req,res) => {
     if(!my_Item || !my_wareHoue){
       throw new BadRequestError("please provide valid item and/or WareHouse")
     }
-
+    
       const start=parseInt(item_set.from_Carton_Number)
       const end=parseInt(item_set.to_Carton_Number)
+      //////////////
+      const WareHouseStoredItems=await ContainedItemsModel.find({StoredAt:item_set.To_WareHouse})
+      const AllItemsInWareHouse=WareHouseStoredItems.length
+  
+      const MyWareHouse=await warehouse.findOne({_id:item_set.To_WareHouse});
+      var WareHouseCapacity=MyWareHouse.Capacity
+  
+      const availableSlots=WareHouseCapacity-AllItemsInWareHouse
+      console.log("🚀 ==> file: WareHouseAdjustments.js:62 ==> constadd_New_Item_To_wareHouse= ==> availableSlots:", availableSlots);
+  
+      if((end-start)>availableSlots){
+        throw new BadRequestError("WareHouse is full")
+      }
+      //////////////////
       if(start>end){
         throw new BadRequestError("please provide valid carton numbers")
       }
@@ -42,8 +55,23 @@ const add_New_Item_To_wareHouse = async (req,res) => {
      }
   }
   else{
+    //////
+    const WareHouseStoredItems=await ContainedItemsModel.find({StoredAt:item_set.To_WareHouse})
+    const AllItemsInWareHouse=WareHouseStoredItems.length
+    const MyWareHouse=await warehouse.findOne({_id:item_set.To_WareHouse});
+    var WareHouseCapacity=MyWareHouse.Capacity
+    const availableSlots=WareHouseCapacity-AllItemsInWareHouse
+    console.log("🚀 ==> file: WareHouseAdjustments.js:62 ==> constadd_New_Item_To_wareHouse= ==> availableSlots:", availableSlots);
+
+    if(availableSlots<1){
+      throw new BadRequestError("WareHouse is full")
+    }
+    ///////
     const my_Item=await itemModel.findOne({_id:item_set.item})
+
     const my_wareHoue=await warehouse.findOne({_id:item_set.To_WareHouse})
+
+
     if(!my_Item || !my_wareHoue){
       throw new BadRequestError("please provide valid item and/or WareHouse")
     }
@@ -82,11 +110,24 @@ const Adjust_wareHouse_Item=async (req,res)=>{
   const start=parseInt(from_Carton_Number)
   const end= parseInt(to_Carton_Number)
   const my_wareHouse_items=[];
+  const WareHouseStoredItems=await ContainedItemsModel.find({StoredAt:To_WareHouse})
+      const AllItemsInWareHouse=WareHouseStoredItems.length
   
+      const MyWareHouse=await warehouse.findOne({_id:To_WareHouse});
+      var WareHouseCapacity=MyWareHouse.Capacity
+  
+      const availableSlots=WareHouseCapacity-AllItemsInWareHouse
+      console.log("🚀 ==> file: WareHouseAdjustments.js:62 ==> constadd_New_Item_To_wareHouse= ==> availableSlots:", availableSlots);
+  
+      if((end-start)>availableSlots){
+        throw new BadRequestError("WareHouse is full")
+      }
 
   for(var i=start;i<=end;i++){
     console.log('here')
     const item_is_in_my_wareHouse=await ContainedItemsModel.findOne({item:item,Carton_Number:i,StoredAt:my_from_wareHoue})
+
+
     if(item_is_in_my_wareHouse==null){
       throw new BadRequestError("Please provide Valid values for the wareHouse items")
     }
@@ -133,8 +174,16 @@ else{
   if(!my_item || !my_from_wareHoue || !my_to_wareHoue || !item_is_in_my_wareHouse){
     throw new BadRequestError("Please provide Valid values for the wareHouse items")
 }
+const WareHouseStoredItems=await ContainedItemsModel.find({StoredAt:To_WareHouse})
+const AllItemsInWareHouse=WareHouseStoredItems.length
+const MyWareHouse=await warehouse.findOne({_id:To_WareHouse});
+var WareHouseCapacity=MyWareHouse.Capacity
+const availableSlots=WareHouseCapacity-AllItemsInWareHouse
+console.log("🚀 ==> file: WareHouseAdjustments.js:62 ==> constadd_New_Item_To_wareHouse= ==> availableSlots:", availableSlots);
 
-
+if(availableSlots<1){
+  throw new BadRequestError("WareHouse is full")
+}
 const updated_Carton = await ContainedItemsModel.findOneAndUpdate(
   { _id: item_is_in_my_wareHouse._id }, 
   {
@@ -152,3 +201,7 @@ res.status(StatusCodes.OK).json({msg:"Single Item Adjustment Succesfull"})
 }
 
 module.exports={add_New_Item_To_wareHouse,Adjust_wareHouse_Item};
+
+//TODO test out full warehouse
+//TODO test out full warehouse
+//TODO test out full warehouse

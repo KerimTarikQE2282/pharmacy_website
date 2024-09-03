@@ -1,14 +1,27 @@
 const StatusCodes=require('http-status-codes')
 const GeneralSaleModel=require('../../models/Sale/GeneralSale')
-const { BadRequestError } = require('../../errors')
+const { BadRequestError } = require('../../errors');
+const OrderItem = require('../../models/Sale/OrderItem');
 
 
 //TODO  dont forget to specify created by after specifyint 
 const addGeneralSale= async (req,res) => {
-  const myGeneralSale=await GeneralSaleModel.create(req.body)
-  res.status(StatusCodes.OK).json(myGeneralSale)
-}
+  const {orderNumber,customer,orderDate,orderStatus,billingStatus,orderTotal,paymentMethod,salesRepresentative,Order_item}=req.body;
 
+  const myGeneralSale=await GeneralSaleModel.create({
+    orderNumber,customer,orderDate,orderStatus,billingStatus,orderTotal,paymentMethod,salesRepresentative
+  })
+  const OrderItemModified=Order_item.map((item)=>({
+    ...item,
+    orderNumber:myGeneralSale._id
+  }))
+  console.log("🚀 ==> file: GeneralSale.js:18 ==> OrderItemModified ==> OrderItemModified:", OrderItemModified);
+
+   await OrderItem.create(OrderItemModified)
+
+  res.status(StatusCodes.OK).json({msg:"Sale Completed Succesfully",body:req.body})
+}
+//TODO order total should be calculated rather than saved
 const getAllGeneralSales=async (req,res) =>{
   const AllGeneralSales=await GeneralSaleModel.find({})
   res.status(StatusCodes.OK).json({AllGeneralSales:AllGeneralSales,lenght:AllGeneralSales.length})

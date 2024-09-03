@@ -9,7 +9,7 @@ const orderItemSchema = new Schema({
     
       },
 
-      ProductName: {
+      Item: {
         type: mongoose.Types.ObjectId,
         ref: "Item",
         required: [true, "Please provide a product name"],

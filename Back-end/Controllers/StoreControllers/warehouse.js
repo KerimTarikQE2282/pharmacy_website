@@ -12,8 +12,8 @@ const getAllWarehouses = async (req, res) => {
 
 const createWarehouse = async (req, res) => {
   try {
-    const { WareHouseName, WareHouseLocation, WareHouseDescription, WareHouseType } = req.body;
-    const newWarehouse = await Warehouse.create({ WareHouseName, WareHouseLocation, WareHouseDescription, WareHouseType });
+    const { WareHouseName, WareHouseLocation, WareHouseDescription, WareHouseType,Capacity } = req.body;
+    const newWarehouse = await Warehouse.create({ WareHouseName, WareHouseLocation, WareHouseDescription, WareHouseType,Capacity });
     res.status(201).json({ newWarehouse });
   } catch (error) {
     console.log(error);
