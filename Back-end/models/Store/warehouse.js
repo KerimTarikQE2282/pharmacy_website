@@ -14,6 +14,10 @@ const warehouseSchema = new Schema({
     type: String,
     default: null,
   },
+  Capacity:{
+    type:Number,
+    required:[true, 'Please provide Ware House capacity'],
+  },
   WareHouseType: {
     type: String,
     default: null,

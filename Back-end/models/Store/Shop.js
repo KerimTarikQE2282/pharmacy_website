@@ -10,6 +10,10 @@ const storeSchema = new Schema({
     type: String,
     required: [true, 'Please provide store location'],
   },
+  Capacity:{
+    type:Number,
+    required:[true, 'Please provide store capacity'],
+  },
   StoreDescription: {
     type: String,
     default: null,
