@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-export default function SelectComponent({ name, label, register, error, className, options=[] }) {
+export default function NonIdSelectComponent({ name, label, register, error, className, options=[] }) {
 console.log("🚀 ==> file: SelectComponent.jsx:5 ==> SelectComponent ==> options:", options);
 
 
@@ -22,8 +22,8 @@ console.log("🚀 ==> file: SelectComponent.jsx:5 ==> SelectComponent ==> option
         >
          
           {options.map(option => (
-            <option key={option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name || option.WareHouseName || option.StoreName ||option.customerName} value={option.id || option._id}>
-              {option.title ||  option.UnitName || option.BrandName || option.WareHouseName || option.UnitName || option.ReferenceNumber || option.name ||  option.StoreName ||option.customerName}
+            <option key={option } value={option}>
+              {option}
             </option>
           ))}
         </select>

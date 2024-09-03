@@ -1,4 +1,4 @@
-import { ArrowDownUp, BadgeDollarSign, BaggageClaim, Bookmark, CheckCheck, ChevronDown, ChevronRight, CircleOff, Container, GalleryVerticalEnd, Layers3, NotebookTabsIcon, Package, PlusCircle, ReceiptIcon, ReceiptRussianRuble, ShoppingCart, User } from 'lucide-react';
+import { ArrowDownUp, BadgeDollarSign, BaggageClaim, Bookmark, CheckCheck, ChevronDown, ChevronRight, CircleOff, Container, GalleryVerticalEnd, Layers3, NotebookTabsIcon, Package, Pen, PlusCircle, ReceiptIcon, ReceiptRussianRuble, ShoppingCart, User } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 import {
@@ -24,6 +24,11 @@ function SalesSideBarComponent() {
         name:"Sales Order",
         link:"/selling/salesorder",
         icon:<ArrowDownUp className='w-4 h-4'/>
+      },
+      {
+        name:"Make Sales Order",
+        link:"/selling/salesorder/new",
+        icon:<Pen className='w-4 h-4'/>
       },
       // {
       //   name:"Packages",
