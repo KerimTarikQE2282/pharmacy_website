@@ -28,7 +28,7 @@ import { connect } from 'react-redux'
     login(data,setLoading,setError)
   } 
   if(isAuthenticated){
-    router.push('/home/overview')  
+    router.replace('/home/overview')  
   }
   React.useEffect(()=>{
     if(user != null){

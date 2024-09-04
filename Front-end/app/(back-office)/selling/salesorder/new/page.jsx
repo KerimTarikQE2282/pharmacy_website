@@ -13,6 +13,7 @@ import { Minus, Plus } from 'lucide-react';
 import SelectComponent from '@/Components/FormInputs/SelectComponent';
 import { getData } from '@/actions/storeActions/StoreGeneralCrudRequests/getData';
 import NonIdSelectComponent from '@/Components/FormInputs/NonIdSelectComponent';
+import SalesModal from '../Components/SalesModal';
 
 
 function NewCustomer({ initialData, isupdate = false, makePOSTApiRequest, makePUTApiRequest }) {
@@ -20,7 +21,10 @@ function NewCustomer({ initialData, isupdate = false, makePOSTApiRequest, makePU
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: initialData, // Set initial data as default values
   });
+  const [showModal,setShowModal]=React.useState(false) 
+
   const router = useRouter();
+  const [FinalVersionFromData,setFinalVersionFromData]=React.useState({})
   const [loading, setLoading] = React.useState(false);
   const [product,setProduct]=React.useState([])
   const [customer,setCustomer]=React.useState([])
@@ -28,7 +32,6 @@ function NewCustomer({ initialData, isupdate = false, makePOSTApiRequest, makePU
   React.useEffect(() => {
     async function getItems(){try {
       const [ItemData,CustomerData]=await Promise.all([
-
         getData('items'),
         getData('Customer'),
       ])
@@ -78,11 +81,12 @@ for (i = 0; i < itemNumber; i++) {
     </div>
   );
 }
-
+var totalSalesPrice=0;
   // Handle form submission
   async function onSubmit(formData) {
-
+    
     setLoading(true);
+    setShowModal(true)
     try {
       if (isupdate) {
         // Update existing record
@@ -93,6 +97,7 @@ for (i = 0; i < itemNumber; i++) {
       } else {
         console.log("🚀 ==> file: page.jsx:29 ==> onSubmit ==> formData:", formData);
         var itemsBought=[];
+        
         for (var i=0;i<itemNumber;i++){
           const Myitem={
             Item:formData[`Item:${i}`],
@@ -100,22 +105,35 @@ for (i = 0; i < itemNumber; i++) {
             unitPrice:formData[`unitPrice:${i}`],
           }
           itemsBought.push(Myitem)
+          var singleItemSalePrice=formData[`unitPrice:${i}`]*formData[`quantity:${i}`]
+
+          totalSalesPrice+=singleItemSalePrice;
+          console.log("🚀 ==> file: page.jsx:106 ==> onSubmit ==> totalSalesPrice:", totalSalesPrice);
 
         }
-          const FinalVersionFromData={
+
+          // totalSalesPrice=(totalSalesPrice*0.15)+totalSalesPrice
+        
+    var user= JSON.parse(global?.window?.localStorage.getItem('INVENTORY_USER'))
+    setFinalVersionFromData({
             orderNumber:formData.orderNumber,
             customer:formData.customer,
             orderStatus:formData.orderStatus,
             billingStatus:formData.billingStatus,
             paymentMethod:formData.paymentMethod,
-            orderTotal:formData.orderTotal,
-            salesRepresentative:formData.salesRepresentative,
-            Order_item:itemsBought
-          }
+            orderTotal:totalSalesPrice,
+            payedAmount:formData.payedAmount,
+            salesRepresentative:user._id,
+            Order_item:itemsBought,
+          })
+    console.log("🚀 ==> file: page.jsx:118 ==> onSubmit ==> FinalVersionFromData:", FinalVersionFromData);
+          // if(FinalVersionFromData?.orderStatus  == 'paid' && ){
 
+          // }
 
+          
         // Create new record
-       await makePOSTApiRequest('GeneralSales', setLoading, FinalVersionFromData, 'GeneralSales');
+       //await makePOSTApiRequest('GeneralSales', setLoading, FinalVersionFromData, 'GeneralSales');
        // router.replace('/selling/credits');
       }
     } catch (error) {
@@ -124,10 +142,10 @@ for (i = 0; i < itemNumber; i++) {
       setLoading(false);
     }
   }
-
+  
 
   return (
-    <div>
+    <div className='relative'>
        <FormHeader title={`${isupdate ? 'Update Customer' : 'New Customer'}`} link={'/dashboard/customers'} />
        <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
   <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>
@@ -147,9 +165,10 @@ for (i = 0; i < itemNumber; i++) {
    
      
      
-    <TextInput
-      label="Order Total"
-      name="orderTotal"
+   
+       <TextInput
+      label="Payed Amount"
+      name="payedAmount"
       type="number"  // Allows user to select date and time
       width="not-full"
       register={register}
@@ -174,12 +193,13 @@ for (i = 0; i < itemNumber; i++) {
   <Minus className="text-white w-4 h-4" />
   <span className='text-white'>Less</span>
 </button>
-
-      </div>
+<br/>
+     </div>
   </div>
+
   <SubumitButton title={`${isupdate ? 'Update Credit' : 'New Credit'}`} isLoading={loading} />
 </form>
-
+{showModal && <SalesModal data={FinalVersionFromData} item={product} removeModal={setShowModal} request={makePOSTApiRequest} setLoading={setLoading}/>}
     </div>
   );
 }
