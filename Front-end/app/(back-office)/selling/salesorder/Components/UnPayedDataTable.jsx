@@ -1,20 +1,20 @@
 "use client"
-import { Columns, Pencil, Trash, Upload } from 'lucide-react'
+import { Columns, HandCoins, Pencil, Trash, Upload } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
-import DeleteBtn from '../../app/(back-office)/GeneralComponents/DeleteBtn'
+import DeleteBtn from '@//app/(back-office)/GeneralComponents/DeleteBtn'
 import { useGetData } from '@/hooks/useGetData'
-import Loader from '../../Components/dashboard/Loader'
+import Loader from '@/Components/dashboard/Loader'
 import 'react-loading-skeleton/dist/skeleton.css'
 import exportFromJSON from 'export-from-json'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-export default function DataTable({ name, columns = [''], resourceTitle }) {
+export default function DataTable({ name, columns = [''], resourceTitle ,endpoint}) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const { isLoading, data, isError, error, isFetching } = useGetData(name);
+  const { isLoading, data, isError, error, isFetching } = useGetData(endpoint);
 
 
 
@@ -86,6 +86,7 @@ export default function DataTable({ name, columns = [''], resourceTitle }) {
               {columns.map((title) => (
                 title !== 'id' ? (<th className="px-6 py-4" key={title}>{title}</th>) : null
               ))}
+              <th>Pay</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -110,14 +111,23 @@ export default function DataTable({ name, columns = [''], resourceTitle }) {
                     )}
                   </td>
                 ))}
+               
+               <td className="py-4  gap-10">
+                  <Link href={`/selling/salesorder/pay/${mydata.orderNumber}`} className='font-medium text-blue item-center space-x-2 text-green-500'>
+                    <HandCoins className='text'/>
+                  </Link>
+                </td>
+
                 <td className="py-4 flex gap-10">
-                  <Link href={`/storing/${resourceTitle}/update/${mydata._id}`} className='font-medium text-blue item-center space-x-2 text-blue-500'>
+                  <Link href={`/selling/pay/${mydata._id}`} className='font-medium text-blue item-center space-x-2 text-blue-500'>
                     <Pencil className='text'/>
                   </Link>
                 </td>
+                
                 <td>
                   <DeleteBtn resourceTitle={resourceTitle} id={mydata?._id}/>
                 </td>
+                
               </tr>
             ))}
           </tbody>

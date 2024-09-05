@@ -1,27 +1,42 @@
 const mongoose = require('mongoose');
 
+
+
 const creditSchema = new mongoose.Schema({
     orderNumber: {
-        type: String,
-        required: [true, "Please provide the order number"],
-        unique: true
+      type: Number,
+      required: [true, "Please provide an order number"],
+      unique: true // Assuming each order number is unique
     },
-    productName: {
-        type: String,
-        required: [true, "Please provide the product name"]
+    customer: {
+      type: mongoose.Types.ObjectId,
+      ref: "Customer",
+      required: [true, "Please provide a customer"]
     },
-    quantity: {
-        type: Number,
-        required: [true, "Please provide the quantity"]
+    orderDate: {
+      type: Date,
+      default: Date.now
     },
-    unitPrice: {
-        type: Number,
-        required: [true, "Please provide the unit price"]
+    orderStatus: {
+      type: String,
+      enum: ["pending", "shipped", "delivered", "canceled"],
+      default: "pending"
     },
-    dateCreated: {
-        type: Date,
-        default: Date.now
+  
+    orderTotal: {
+      type: Number,
+      required: [true, "Please provide the order total"],
+      min: [0, "Order total cannot be negative"]
+    },
+    paymentMethod: {
+      type: String,
+      enum: ["credit card", "debit card", "paypal", "bank transfer", "cash"],
+      required: [true, "Please provide a payment method"]
+    },
+    salesRepresentative: {
+      type: mongoose.Types.ObjectId,
+      ref: "SalesRepresentative"
     }
-});
-
+  }, { timestamps: true });
+  
 module.exports = mongoose.model('Credit', creditSchema);

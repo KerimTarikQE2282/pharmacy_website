@@ -5,7 +5,7 @@ import React from 'react'
 
 
 export default  function Brands() {
-  const columns=['orderNumber','productName','quantity','unitPrice'];
+  const columns=['orderDate','orderTotal','paymentMethod','customer'];
  
 
     return (
@@ -13,7 +13,7 @@ export default  function Brands() {
           <TabelNavBar link='/selling/credits/new' title='Credits'/>
          <div className='my-4 p-8'>
           
-      <DataTable name='credits' columns={columns} resourceTitle='credits'/>
+      <DataTable name='GeneralSales' columns={columns} resourceTitle='AllGeneralSales'/>
   
       </div>
       </div>

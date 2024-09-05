@@ -1,12 +1,55 @@
+const CreditItems=require('../../models/Sale/CreditItem')
 const Credit = require('../../models/Sale/Credits');
 const StatusCodes = require('http-status-codes');
-const BadRequestError = require('../../errors'); // Adjust the path as necessary
+const { BadRequestError } = require('../../errors');
 
 // Create a new credit
-const createCredit = async (req, res) => {
-  const newCredit = await Credit.create(req.body);
-  res.status(StatusCodes.CREATED).json(newCredit);
+const  createCredit = async (req,res) => {
+  const {orderNumber,customer,orderDate,orderStatus,orderTotal,paymentMethod,salesRepresentative,Order_item,PayedAmount}=req.body;
+  const Sale = await Credit.find({ customer: customer });
+console.log("🚀 ==> file: Credits.js:10 ==> createCredit ==> Customer:", Sale);
+
+let TotalCredit = 0;
+  console.log("🚀 ==> file: Credits.js:19 ==> createCredit ==> TotalCredit:", TotalCredit);
+  for (let i = 0; i < Sale.length; i++) {
+    TotalCredit += Sale[i].orderTotal;
+  }
+  TotalCredit += orderTotal;
+  if(TotalCredit>1000000){
+    res.status(400).json({msg:"Credit Limit is exceeded"})
+  }
+  /////////
+  else{
+    const Checker=await Credit.findOne({orderNumber})
+    if(Checker){throw new BadRequestError("Credit Number is already Reserved ")}
+    const myCreditSale=await Credit.create({
+      orderNumber,customer,orderDate,orderTotal,paymentMethod,salesRepresentative,orderStatus
+    })
+    const OrderCreditModified=Order_item.map((item)=>({
+      ...item,
+      orderNumber:myCreditSale._id
+    }))
+  
+     await CreditItems.create(OrderCreditModified)
+  
+    res.status(StatusCodes.OK).json({msg:"Credit Registration Completed Succesfully",body:req.body})
+ 
+  }
 };
+
+
+// const  createPartialCredit = async (req,res) => {
+
+
+// };
+
+
+
+
+
+
+
+
 
 // Update a credit by ID
 const updateCreditById = async (req, res) => {

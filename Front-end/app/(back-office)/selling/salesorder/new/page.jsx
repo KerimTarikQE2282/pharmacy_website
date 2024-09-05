@@ -122,7 +122,7 @@ var totalSalesPrice=0;
             billingStatus:formData.billingStatus,
             paymentMethod:formData.paymentMethod,
             orderTotal:totalSalesPrice,
-            payedAmount:formData.payedAmount,
+            payedAmount:formData.PayedAmount,
             salesRepresentative:user._id,
             Order_item:itemsBought,
           })
@@ -158,7 +158,7 @@ var totalSalesPrice=0;
       errors={errors}
     />
       <SelectComponent label="Customer" name="customer"  type="text" width='full'  options={customer}     register={register}  errors={errors}  className='w-full'/>
-      <NonIdSelectComponent label="Order Status" name="orderStatus"  type="text" width='full'  options={["pending", "shipped", "delivered", "canceled"]}     register={register}  errors={errors}  className='w-full'/>
+      <NonIdSelectComponent label="Order Status" name="orderStatus"  type="text" width='full'  options={["pending", "shipped", "delivered"]}     register={register}  errors={errors}  className='w-full'/>
       <NonIdSelectComponent label="Billing Status" name="billingStatus"  type="text" width='full'  options={["unpaid", "paid", "partially paid"]}     register={register}  errors={errors}  className='w-full'/>
       <NonIdSelectComponent label="Payment Method" name="paymentMethod" type="text" width='full'  options={["credit card", "debit card", "paypal", "bank transfer", "cash"]}     register={register}  errors={errors}  className='w-full'/>
 
@@ -168,7 +168,8 @@ var totalSalesPrice=0;
    
        <TextInput
       label="Payed Amount"
-      name="payedAmount"
+      name="PayedAmount"
+      isrequired={false}
       type="number"  // Allows user to select date and time
       width="not-full"
       register={register}
