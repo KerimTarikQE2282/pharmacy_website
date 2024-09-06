@@ -5,7 +5,7 @@ import SalesOverview from '../Components/SalesOverview'
 export default function Dashboard() {
   return (
     <div>
-      <DashBoardBanner/>
+      
       <SalesOverview/>
     </div>
   )
