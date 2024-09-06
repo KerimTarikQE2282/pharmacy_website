@@ -74,6 +74,8 @@ console.log("🚀 ==> file: GeneralSale.js:9 ==> addGeneralSale ==> req:", req.b
 
 const payCredit= async (req,res)=>{
   const {OrderNumber,payedAmount}=req.body
+  console.log("🚀 ==> file: GeneralSale.js:77 ==> payCredit ==> OrderNumber,payedAmount:", OrderNumber,payedAmount);
+
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth() + 1; // Months are zero-based (0-11)

@@ -85,23 +85,32 @@ const getAllunPayedGeneralSalesByOrderNumber = async (req, res) => {
 };
   
 
-  const getGeneralSalesByOrderNumber=async (req,res)=>{
-    const {OrderNumber}=req.params;
-    console.log("🚀 ==> file: GeneralSale.js:20 ==> getGeneralSalesByOrderNumber ==> OrderNumber:", OrderNumber);
+const getGeneralSalesByOrderNumber = async (req, res) => {
+  const { OrderNumber } = req.params;
 
+  if (!OrderNumber) {
+    throw new BadRequestError("Please provide an OrderNumber");
+  }
 
-    if(!OrderNumber){
-      throw new BadRequestError("please provide OrderNumber")
-    }
-    const MySale=await GeneralSaleModel.findOne({orderNumber:OrderNumber})
+  const MySale = await GeneralSaleModel.findOne({ orderNumber: OrderNumber });
 
-    
-    if(!MySale){
-      
-      throw new BadRequestError("please provide a valid  OrderNumber")
-    }
-    res.status(StatusCodes.OK).json(MySale);
-}
+  if (!MySale) {
+    throw new BadRequestError("Please provide a valid OrderNumber");
+  }
+
+  const MyOrderItem = await OrderItem.find({ orderNumber: MySale._id });
+  const Customer=await CustomerModel.findOne({_id:MySale.customer})
+  const Sale = {
+    ...MySale.toObject(), 
+    OrderedItems: MyOrderItem,
+    customer:Customer.customerName,
+    Customeradress:Customer.address1,
+    CustomerPhone:Customer.phone1
+
+  };
+
+  res.status(StatusCodes.OK).json(Sale);
+};
 
 
 

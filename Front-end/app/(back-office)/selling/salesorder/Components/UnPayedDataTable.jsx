@@ -15,6 +15,8 @@ export default function DataTable({ name, columns = [''], resourceTitle ,endpoin
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const { isLoading, data, isError, error, isFetching } = useGetData(endpoint);
+  console.log("🚀 ==> file: UnPayedDataTable.jsx:18 ==> DataTable ==> data:", data);
+
 
 
 
