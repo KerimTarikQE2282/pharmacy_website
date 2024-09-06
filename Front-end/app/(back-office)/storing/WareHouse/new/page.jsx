@@ -49,9 +49,11 @@ var done=false
       {/* { Form } */}
       <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
         <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>
-         <TextInput label="WareHouse Name" name="WareHouseName" defaultValue={initialData?.WareHouseName || ''}  type="text" width='full'   register={register}  errors={errors}/>
+         <TextInput label="WareHouse Name" name="WareHouseName" defaultValue={initialData?.WareHouseName || ''}  type="text" width='N-full'   register={register}  errors={errors}/>
          <TextInput label="WareHouse Location" name="WareHouseLocation" defaultValue={initialData?.WareHouseLocation || ''}   type="text" width='full'   register={register}  errors={errors}/>
-         <TextAreaInputs  label="WareHouse Description " name="WareHouseDescription"    type="text" width='full'  defaultValue={initialData?.WareHouseDescription || ''}   register={register}  errors={errors}/>
+         <TextInput label="WareHouse Capacity" name="Capacity" defaultValue={initialData?.Capacity || ''}   type="number" width='full'   register={register}  errors={errors}/>
+         <TextAreaInputs  label="WareHouse  " name="WareHouseDescription"    type="text" width='full'  defaultValue={initialData?.WareHouseDescription || ''}   register={register}  errors={errors}/>
+
          {/* <TextInput label="Brand Name" name="WareHouseName"  type="text" width='full'   register={register}  errors={errors}/> */}
         
 
