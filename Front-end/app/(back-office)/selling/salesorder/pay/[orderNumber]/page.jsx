@@ -10,9 +10,11 @@ import SubumitButton from "@/Components/FormInputs/SubumitButton";
 import { makePUTApiRequest, makePOSTApiRequest } from '@/actions/StoreGeneralCrudRequests';   
 import { useGetDataById } from "@/hooks/useGetDataById";
 import { getData } from "@/actions/storeActions/StoreGeneralCrudRequests/getData";
-
+import PaymentModal from '../../Components/PaymentModal';
 function NewBrand({ initialData, isupdate = false, makePOSTApiRequest, makePUTApiRequest,params:orderNumber }) {
 
+  const [showModal,setShowModal]=React.useState(false) 
+  const [product,setProduct]=React.useState([])
 
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
@@ -21,25 +23,57 @@ function NewBrand({ initialData, isupdate = false, makePOSTApiRequest, makePUTAp
     defaultValues: initialData, // Set initial data as default values
   });
    const [order,setOrder]=React.useState({})
+   const [FinalVersionFromData,setFinalVersionFromData]=React.useState({})
+
+
+   React.useEffect(() => {
+    async function getItems(){try {
+      const [ItemData,CustomerData]=await Promise.all([
+        getData('items'),
+        getData('Customer'),
+      ])
+
+  
+      setProduct(ItemData.items)
+      setCustomer(CustomerData.Customer)
+
+    } catch (error) {
+      console.log("🚀 ==> file: page.jsx:27 ==> NewCustomer ==> error:", error);
+     }
+  
+    }
+    getItems()
+  },[])
+  
+
 
    React.useEffect(() => {
     const fetchData = async () => {
       const data = await getData(`GeneralSales/OrderNumber/${orderNumber.orderNumber}`);
       setOrder(data);
     };
-  
+
     fetchData();
   }, [orderNumber.orderNumber]);
-   console.log("🚀 ==> file: page.jsx:24 ==> NewBrand ==> order:", order);
 
   // Handle form submission
   async function onSubmit(formData) {
-    const router=useRouter()
-    const OrderNumber=router.query;
-    console.log("🚀 ==> file: page.jsx:29 ==> onSubmit ==> OrderNumber:", OrderNumber);
+   
 
     setLoading(true);
-  
+    const editedSale = {
+
+      ...order,
+      payment: [...order.payment, { 
+        payedAmount: parseInt(formData.payedAmount), 
+        date: Date.now() 
+      }]
+    };
+    console.log("🚀 ==> file: page.jsx:43 ==> onSubmit ==> editedSale:", editedSale);
+
+    setFinalVersionFromData(editedSale)
+    setShowModal(true);
+
         // Create new record
         // await makePOSTApiRequest('GeneralSales/pay', setLoading, formData, 'Credit_Payment');
        // router.replace('/storing/Brands');
@@ -47,6 +81,7 @@ function NewBrand({ initialData, isupdate = false, makePOSTApiRequest, makePUTAp
   }
 
 
+  console.log("🚀 ==> file: page.jsx:26 ==> NewBrand ==> FinalVersionFromData:", FinalVersionFromData);
 
   return (
     <div>
@@ -58,7 +93,7 @@ function NewBrand({ initialData, isupdate = false, makePOSTApiRequest, makePUTAp
 <TextInput
   label="Payed Amount"
   name="payedAmount"
-  type="text"
+  type="number"
   width="full"
   defaultValue={isupdate ? initialData?.BrandName || '' : ''}
   register={register}
@@ -67,8 +102,10 @@ function NewBrand({ initialData, isupdate = false, makePOSTApiRequest, makePUTAp
 
 
         </div>
-        <SubumitButton title={'Pay'} isLoading={loading} />
+        <SubumitButton title={'Payment'} isLoading={loading}  />
       </form>
+      {showModal && <PaymentModal data={FinalVersionFromData} item={product} removeModal={setShowModal} request={makePOSTApiRequest} setLoading={setLoading}/>}
+
     </div>
   );
 }
@@ -99,7 +136,9 @@ const OrderDetails = (order ) => {
 
       <div>
         <h2 className="text-lg font-semibold mb-2">Customer Information</h2>
-        <p><strong>Customer ID:</strong> {order.customer}</p>
+        <p><strong>Customer Name:</strong> {order.customer}</p>
+        <p><strong>Customer Adress:</strong> {order.Customeradress}</p>
+        <p><strong>Customer Phone:</strong> {order.CustomerPhone}</p>
       </div>
 
       <div className="mt-4">
