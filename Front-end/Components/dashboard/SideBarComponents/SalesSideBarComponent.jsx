@@ -1,4 +1,4 @@
-import { ArrowDownUp, BadgeDollarSign, BaggageClaim, Bookmark, CheckCheck, ChevronDown, ChevronRight, CircleOff, Container, GalleryVerticalEnd, Layers3, NotebookTabsIcon, Package, PlusCircle, ReceiptIcon, ReceiptRussianRuble, ShoppingCart, User } from 'lucide-react';
+import { ArrowDownUp, BadgeDollarSign, BaggageClaim, Bookmark, CheckCheck, ChevronDown, ChevronRight, CircleOff, Container, GalleryVerticalEnd, Layers3, NotebookTabsIcon, Package, Pen, PlusCircle, ReceiptIcon, ReceiptRussianRuble, ShoppingCart, User } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react'
 import {
@@ -20,10 +20,11 @@ function SalesSideBarComponent() {
         link:"/selling/customer",
         icon:<User className='w-4 h-4'/>
       },
+   
       {
-        name:"Sales Order",
-        link:"/selling/salesorder",
-        icon:<ArrowDownUp className='w-4 h-4'/>
+        name:"Make Sales Order",
+        link:"/selling/salesorder/new",
+        icon:<Pen className='w-4 h-4'/>
       },
       // {
       //   name:"Packages",
@@ -33,35 +34,21 @@ function SalesSideBarComponent() {
     
       ,
       {
-        name:"Invoice",
-        link:"/selling/invoice",
+        name:"Pay Credit",
+        link:"/selling/salesorder/pay",
         icon:<BadgeDollarSign className='w-4 h-4'/>
-      }
-      ,
-      {
-        name:"Sales Reciepts",
-        link:"/selling/salesreciepts",
-        icon:<ReceiptIcon className='w-4 h-4'/>
-      }
-      ,
-      {
-        name:"Paymets Recieved",
-        link:"/selling/paymentsrecieved",
-        icon:<CheckCheck className='w-4 h-4'/>
-      }
-      ,
-      {
-        name:"Sales Returns",
-        link:"/selling/salesreturn",
-        icon:<ReceiptRussianRuble className='w-4 h-4'/>
-      }
-      ,
-      {
-        name:"Credit ",
-        link:"/selling/credits",
-        icon:<Bookmark className='w-4 h-4'/>
       },
       {
+        name:"View All Completed Sales",
+        link:"/selling/salesorder/viewallsales",
+        icon:<BadgeDollarSign className='w-4 h-4'/>
+      },
+      {
+        name:"View All Unpayed Sales",
+        link:"/selling/salesorder/viewunpayedsales",
+        icon:<BadgeDollarSign className='w-4 h-4'/>
+      },
+   {
         name:"Unpayed Credits",
         link:"/selling/unpayedcredits",
         icon:<CircleOff className='w-4 h-4'/>

@@ -17,18 +17,18 @@ const GeneralSaleSchema = new mongoose.Schema({
   },
   orderStatus: {
     type: String,
-    enum: ["pending", "shipped", "delivered", "canceled"],
+    enum: ["pending", "shipped", "delivered"],
     default: "pending"
-  },
-  billingStatus: {
-    type: String,
-    enum: ["unpaid", "paid", "partially paid"],
-    default: "unpaid"
   },
   orderTotal: {
     type: Number,
     required: [true, "Please provide the order total"],
     min: [0, "Order total cannot be negative"]
+  },
+  billingStatus:{
+    type: String,
+    enum: ["paid", "unpaid", "partially paid"],
+    default: "pending"
   },
   paymentMethod: {
     type: String,
@@ -38,7 +38,18 @@ const GeneralSaleSchema = new mongoose.Schema({
   salesRepresentative: {
     type: mongoose.Types.ObjectId,
     ref: "SalesRepresentative"
-  }
+  },
+  unpayedAmount:{
+    type:Number
+  },
+  payment:[{
+    payedAmount:{
+      type:Number,
+    },
+    date:{
+      type:Date
+    }
+  }]
 }, { timestamps: true });
 
 
