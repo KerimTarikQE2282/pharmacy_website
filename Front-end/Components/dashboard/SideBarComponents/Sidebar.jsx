@@ -8,10 +8,10 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/Components/ui/collapsible"
-import SalesSideBarComponent from './SideBarComponents/SalesSideBarComponent'
-import InventorySideBarComponent from './SideBarComponents/InventorySideBarComponent'
-import PurchaseSideBarComponent from './SideBarComponents/PurchaseSideBarComponent'
-import UserManagement from './SideBarComponents/UserManagement'
+import SalesSideBarComponent from './SalesSideBarComponent'
+import InventorySideBarComponent from './InventorySideBarComponent'
+import PurchaseSideBarComponent from './PurchaseSideBarComponent'
+import UserManagement from './UserManagement'
 
 
 function Sidebar() {

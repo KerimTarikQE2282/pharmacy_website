@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '@/Components/dashboard/Header'
-import Sidebar from '@/Components/dashboard/Sidebar'
+import Sidebar from '@/Components/dashboard/SideBarComponents/Sidebar'
 export default function Layout({children}) {
   return (
     <div className='flex'>
