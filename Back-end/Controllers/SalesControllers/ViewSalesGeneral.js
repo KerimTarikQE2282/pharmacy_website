@@ -2,7 +2,6 @@ const StatusCodes=require('http-status-codes')
 const GeneralSaleModel=require('../../models/Sale/GeneralSale')
 const { BadRequestError } = require('../../errors');
 const OrderItem = require('../../models/Sale/OrderItem');
-const {createCredit}=require('./Credits')
 const CustomerModel=require('../../models/Store/Customer')
   
   

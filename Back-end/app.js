@@ -10,7 +10,6 @@ const supplier=require('./Routes/Buy/supplier')
 const invoice=require('./Routes/Sale/Invoice')
 const SingleItemSale=require('./Routes/Sale/SingleItemSale')
 const GeneralSales=require('./Routes/Sale/GeneralSale')
-const Credits=require('./Routes/Sale/Credit')
 const OrderItem=require('./Routes/Sale/OrderItem')
 const WareHouse=require('./Routes/Store/warehouse')
 const WareHouseAdjustments=require('./Routes/Store/Inventory_Adjustments')
@@ -60,7 +59,6 @@ app.use('/api/v1/category',category)
 app.use('/api/v1/stores',store)
 app.use('/api/v1/WareHouseAdjustments/',WareHouseAdjustments)
 app.use('/api/v1/customer/',customer)
-app.use('/api/v1/credits/',Credits)
 
 
 //custom middlewares
