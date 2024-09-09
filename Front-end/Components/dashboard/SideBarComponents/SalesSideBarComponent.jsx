@@ -5,7 +5,7 @@ import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-  } from "@/components/ui/collapsible"
+  } from "@/Components/ui/collapsible"
 function SalesSideBarComponent() {
     const [inventoryOpen,setInventoryopen]=React.useState(false)
 
