@@ -71,9 +71,9 @@ function InventorySideBarComponent() {
         setInventoryopen(!inventoryOpen)
       }
   return (
-   
+   <div>
       <Collapsible >
-      <CollapsibleTrigger CollapsibleTrigger className='flex items-center space-x-2 p-2' onClick={changeChevron}  >
+      <CollapsibleTrigger CollapsibleTrigger className='flex items-center space-x-2 p-2' onClick={changeChevron} >
         <BaggageClaim className='w-4 h-4'/>
         
         <span> Inventory</span>
@@ -87,6 +87,7 @@ function InventorySideBarComponent() {
          <Link>Inventory Adjustments</Link> */}
        </CollapsibleContent>
         </Collapsible>
+        </div>
     
   )
 }

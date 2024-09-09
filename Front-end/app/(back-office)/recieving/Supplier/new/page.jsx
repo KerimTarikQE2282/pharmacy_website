@@ -1,18 +1,28 @@
 "use client"
 import { useForm } from "react-hook-form";
 import React from 'react';
-import FormHeader from '../../InventoryComponents/FormHeaders';
+import FormHeader from '../../../../../Components/dashboard/FormHeaders';
 import TextInput from "@/Components/FormInputs/TextInput";
 import SubumitButton from "@/Components/FormInputs/SubumitButton";
 import TextAreaInputs from "@/Components/FormInputs/TextAreaInputs";
-import {  makePOSTApiRequest, makePUTApiRequest } from "@/lib/apiRequest";
+import { makePUTApiRequest, makePOSTApiRequest } from '../../../../../actions/StoreGeneralCrudRequests';
 
 export default function NewSupplier(props) {
   console.log('from supplier form',props)
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [loading,setLoading]=React.useState(false)
-const {name,phone,email,address,contactPerson,taxID,supplierCode,PaymentTerms,notes}=props.initialData
-const isupdate=props.isupdate
+  const {
+    name = '',  // default empty object for name
+    phone = '',
+    email = '',
+    address = '',
+    contactPerson = '',
+    taxID = '',
+    supplierCode = '',
+    PaymentTerms = '',
+    notes = ''
+  } = props.initialData || {};  // default empty object for initialData in case it's undefined
+  const isupdate=props.isupdate
   async function onSubmit(data){
     
     if(isupdate){

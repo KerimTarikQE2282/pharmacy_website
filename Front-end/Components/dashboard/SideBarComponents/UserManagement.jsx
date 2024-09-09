@@ -36,7 +36,7 @@ function SalesSideBarComponent() {
   return (
     <div>
       <Collapsible>
-      <CollapsibleTrigger CollapsibleTrigger className='flex items-center space-x-2 p-2 ' onClick={()=>setInventoryopen(!inventoryOpen)}>
+      <CollapsibleTrigger  className='flex items-center space-x-2 p-2 ' onClick={()=>setInventoryopen(!inventoryOpen)}>
         <User2 className='w-4 h-4'/>
         
         <span> User Management</span>
