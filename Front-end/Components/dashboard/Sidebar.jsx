@@ -7,7 +7,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/Components/ui/collapsible"
 import SalesSideBarComponent from './SideBarComponents/SalesSideBarComponent'
 import InventorySideBarComponent from './SideBarComponents/InventorySideBarComponent'
 import PurchaseSideBarComponent from './SideBarComponents/PurchaseSideBarComponent'
