@@ -10,7 +10,7 @@ import {  useRouter } from 'next/navigation'
 function header({user}) {
   const router=useRouter()
 
-  const User=JSON?.parse(global?.window?.localStorage.getItem('INVENTORY_USER') )
+  const User = {} || JSON?.parse(global?.window?.localStorage.getItem('INVENTORY_USER') || '{}');
   console.log("🚀 ==> file: Header.jsx:13 ==> header ==> User:", User);
 
   const handleLogout=()=>{

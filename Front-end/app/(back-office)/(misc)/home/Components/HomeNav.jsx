@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation'
 
 function HomeNav() {
 
- const User= JSON.parse(global?.window?.localStorage.getItem('INVENTORY_USER'))
-const pathname = usePathname()
+    const User = {} || JSON?.parse(global?.window?.localStorage.getItem('INVENTORY_USER') || '{}');
+    const pathname = usePathname()
 console.log(pathname)
     const navLinks=[
         {
