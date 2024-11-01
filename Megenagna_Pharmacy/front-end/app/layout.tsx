@@ -74,7 +74,7 @@ export default function RootLayout({
       </nav>
       <div className="bg-[#42abf5] h-10 py-2">
         <div className="text-white flex flex-row justify-evenly w-[50vw]">
-          <Link href={'/'}>Home</Link>
+          <Link href={'/pages/home'}>Home</Link>
           <Link href={'/pages/about'}>about us</Link>
           <Link href={'/pages/portofolio'}>Portofolio</Link>
         </div>
