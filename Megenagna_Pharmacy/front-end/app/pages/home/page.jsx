@@ -9,6 +9,7 @@ import user3 from '../../../Resources/users/user3.avif'
 import card1 from '../../../Resources/Home/cards/card1.png'
 import card2 from '../../../Resources/Home/cards/card2.png'
 import card3 from '../../../Resources/Home/cards/card3.png'
+import Paracet from '../../../Resources/Home/ParacetImage.png'
 const people = [
   {
     id: 1,
@@ -35,7 +36,7 @@ export default function Home() {
     <div className="font-sans">
       
       {/* Hero Section */}
-      <section className="relative bg-cover bg-center h-[500px] text-white flex items-center" 
+      <section className="relative bg-cover bg-center h-[500px] text-white flex items-center " 
        style={{
         backgroundImage: `url(${HomeHero.src})`, // Use the src property
         backgroundSize: 'cover', // Ensures the image covers the container
@@ -162,6 +163,49 @@ limited by the tiny selection at the store.
         </div>
         
       </div>
+      {/* /////////////////////////////////// */}
+      <div className='bg-gradient-to-t from-blue-600 to-white h-[60vh] flex flex-col gap-8 text-slate-900' >
+      <div className='ml-[42vw] text-2xl'>
+            Our Medicines
+      </div>
+
+      <div className='flex flex-row gap-5 justify-center'>
+        <button className='rounded-full border-2 border-slate-950 bg-slate-950 w-[5vw] text-white'>Pills</button>
+        <button className='rounded-full border-2 border-slate-950 w-[5vw]'>Pills</button>
+        <button className='rounded-full border-2 border-slate-950 w-[5vw]'>Pills</button>
+        <button className='rounded-full border-2 border-slate-950 w-[5vw]'>Pills</button>
+      </div>
+            <div className='flex flex-row gap-5 justify-center'>
+            <div className='w-[15vw] h-[35vh] bg-white rounded-md pl-9 pt-5'>
+              <Image
+              src={Paracet}
+              alt='paracet'
+              />
+              <p className='ml-5 text-lg text-slate-800 '>Ibuprofen 31</p>
+            </div>
+            <div className='w-[15vw] h-[35vh] bg-white rounded-md pl-9 pt-5'>
+              <Image
+              src={Paracet}
+              alt='paracet'
+              />
+              <p className='ml-5 text-lg text-slate-800 '>Ibuprofen 31</p>
+            </div><div className='w-[15vw] h-[35vh] bg-white rounded-md pl-9 pt-5'>
+              <Image
+              src={Paracet}
+              alt='paracet'
+              />
+              <p className='ml-5 text-lg text-slate-800 '>Ibuprofen 31</p>
+            </div><div className='w-[15vw] h-[35vh] bg-white rounded-md pl-9 pt-5'>
+              <Image
+              src={Paracet}
+              alt='paracet'
+              />
+              <p className='ml-5 text-lg text-slate-800 '>Ibuprofen 31</p>
+            </div>
+
+            </div>
+      </div>
+
       </div>
     </div>
   );
