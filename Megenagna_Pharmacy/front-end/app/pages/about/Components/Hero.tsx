@@ -8,14 +8,14 @@ export default function hero() {
         backgroundSize: 'cover', // Ensures the image covers the container
         backgroundPosition: 'center', // Centers the background image
         backgroundRepeat: 'no-repeat', // Prevents image repeat
-        height: '85vh', // Full viewport height
-        width: '99vw', 
+        
         overflow: 'auto'
       }}
+      className='overflow-auto lg:h-[85vh] lg:w-[99vw]'
     >
-      <p className='text-5xl font-bold mb-10 w-[40vw] relative top-[40vh] left-[5vw]'>A Little About us </p>
-      <p className=' mb-10 w-[40vw] relative top-[40vh] left-[5vw]'>A Little About us </p>
-
+      <div className='relative top-[20vh] left-[5vw]  w-[40vw]'>
+      <p className='text-5xl font-bold mb-10 '>A Little About us </p>
+      </div>
     </div>
   )
 }

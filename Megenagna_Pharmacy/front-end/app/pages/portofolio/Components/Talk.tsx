@@ -11,7 +11,7 @@ export default function Talk() {
         <p className='text-4xl w-[30vw] ml-32'>Experience Exceptional Healthcare In The USA With Omnicure USA</p>
       </div> 
              <div className='  flex  items-center text-slate-500 '>
-        <p className=' w-[30vw] ml-60'>Discover the pinnacle of healthcare services in the United States, where advancements, quality, cutting edge research, expert doctors and a commitment to patient success, combine to provide an unparalleled medical tourism experience. Omnicure USA is your dedicated partner, guiding you towards improved health and wellness. Connect with us today and embark on a journey of exceptional USA healthcare services.</p>
+        <p className=' w-[30vw] ml-60'>Discover the pinnacle of healthcare services in the United States, where advancements, quality, cutting edge research, expert doctors and a commitment to patient success, combine to provide an unparalleled medical tourilg experience. Omnicure USA is your dedicated partner, guiding you towards improved health and wellness. Connect with us today and embark on a journey of exceptional USA healthcare services.</p>
       </div> 
       </div>
       <div className='h-[50vh] flex flex-row justify-center gap-20'>

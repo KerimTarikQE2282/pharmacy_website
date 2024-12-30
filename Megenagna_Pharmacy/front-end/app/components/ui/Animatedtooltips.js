@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import dog from '../../../Resources/ContactImages/Rectangle 10.png'
 import user1 from '../../../Resources/users/user1.avif'
  const AnimatedTooltip = ({
   items
@@ -67,7 +68,7 @@ import user1 from '../../../Resources/users/user1.avif'
           onMouseMove={handleMouseMove}
           height={100}
           width={100}
-          src={item.image}
+          src={dog}
           alt={item.name}
           className="object-cover !m-0 !p-0 object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500" />
       </div>

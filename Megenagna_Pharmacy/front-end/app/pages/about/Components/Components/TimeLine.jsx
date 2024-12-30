@@ -46,54 +46,54 @@ else if(year==2019){
 }
   return (
     <div className='mt-[25vh]'>
-    <ol class="items-center sm:flex ml-[10vw]">
-        <li class="relative mb-6 sm:mb-0 w-[25vw]">
-        <button class="mt-3 sm:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(1993)}}>
+    <ol class="items-center lg:flex ml-[10vw]">
+        <li class="relative mb-6 lg:mb-0 w-[25vw]">
+        <button class="mt-3 lg:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(1993)}}>
                 <time class="block mb-2  leading-none text-black font-bold">Year:1993</time>
             </button>
             <div class="flex items-center">
               
-                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] sm:ring-8 ring-bg-[#b0cef8]  shrink-0">
+                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] lg:ring-8 ring-bg-[#b0cef8]  shrink-0">
                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                   
                 </div>
-                <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                <div class="hidden lg:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
             </div>
            
         </li>
-        <li class="relative mb-6 sm:mb-0 w-[25vw]">
-        <button class="mt-3 sm:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(2001)}}>
+        <li class="relative mb-6 lg:mb-0 w-[25vw]">
+        <button class="mt-3 lg:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(2001)}}>
                 <time class="block mb-2  leading-none text-black font-bold">Year:2001</time>
             </button>
             <div class="flex items-center">
               
-                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] sm:ring-8 ring-bg-[#b0cef8]  shrink-0">
+                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] lg:ring-8 ring-bg-[#b0cef8]  shrink-0">
                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                   
                 </div>
-                <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                <div class="hidden lg:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
             </div>
            
-        </li>   <li class="relative mb-6 sm:mb-0 w-[25vw]">
-        <button class="mt-3 sm:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(2015)}}>
+        </li>   <li class="relative mb-6 lg:mb-0 w-[25vw]">
+        <button class="mt-3 lg:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(2015)}}>
                 <time class="block mb-2  leading-none text-black font-bold">Year:2015</time>
             </button>
             <div class="flex items-center">
               
-                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] sm:ring-8 ring-bg-[#b0cef8]  shrink-0">
+                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] lg:ring-8 ring-bg-[#b0cef8]  shrink-0">
                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                   
                 </div>
-                <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                <div class="hidden lg:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
             </div>
            
-        </li>  <li class="relative mb-6 sm:mb-0 w-[25vw]">
-        <button class="mt-3 sm:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(2019)}}>
+        </li>  <li class="relative mb-6 lg:mb-0 w-[25vw]">
+        <button class="mt-3 lg:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(2019)}}>
                 <time class="block mb-2  leading-none text-black font-bold">Year:2019</time>
             </button>
             <div class="flex items-center">
               
-                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] sm:ring-8 ring-bg-[#b0cef8]  shrink-0">
+                <div class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0 ring-white bg-[#0061e8] lg:ring-8 ring-bg-[#b0cef8]  shrink-0">
                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                   
                 </div>
