@@ -22,8 +22,8 @@ export default function WhatWeDo() {
        
       </div>
       <div className='lg:w-[20vw] w-[70vw]  bg-[#42abf5] rounded-lg relative lg:left-10 left-6 lg:bottom-[15vh] bottom-[8vh]  lg:mt-0 lg:opacity-100 opacity-80 '>
-        <div className='px-10 py-3'>
-            <p className='text-lg'>Overcoming challenges to supply essential and affordable medicines for people and animals through local manufacturing.</p>
+        <div className='px-10 lg:px-2 py-3'>
+            <p className=''>Overcoming challenges to supply essential and affordable medicines for people and animals through local manufacturing.</p>
 
         </div>
         </div>

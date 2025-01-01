@@ -30,7 +30,7 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="bg-slate-100 py-16">
+    <div className="bg-slate-100 py-16 hidden lg:block">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold text-yellow-500">Our Services</h2>
         <div className="mt-12 flex gap-10 flex-wrap ">

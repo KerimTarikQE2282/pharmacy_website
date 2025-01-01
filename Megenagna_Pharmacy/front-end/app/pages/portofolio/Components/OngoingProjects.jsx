@@ -5,7 +5,7 @@ import plan2 from '../../../../Resources/plans/AR 3 (1)_page-0001 (2).jpg'
 
 function OngoingProjects() {
   return (
-    <div className='bg-white h-[60vh] flex'>
+    <div className='bg-white h-[60vh] lg:flex hidden '>
     
     <div className='w-[80vw] h-[40vh] bg-[#173c56] ml-[10vw] mt-[10vh] rounded-md flex flex-col'>
     <div>

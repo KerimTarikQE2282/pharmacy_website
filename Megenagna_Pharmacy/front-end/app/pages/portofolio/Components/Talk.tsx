@@ -5,13 +5,13 @@ import Group from '../../../../Resources/Talk/Group (1).png'
 import Image from 'next/image'
 export default function Talk() {
   return (
-    <div className='flex flex-col bg-white mt-10'>
-      <div className='h-[50vh] flex flex-row'>
+    <div className='lg:flex flex-col bg-white lg:mt-[30vh] hidden '>
+      <div className='h-[50vh] flex lg:flex-row flex-col'>
       <div className='  flex  items-center text-[#42abf5] '>
-        <p className='text-4xl w-[30vw] ml-32'>Experience Exceptional Healthcare In The USA With Omnicure USA</p>
+        <p className='text-4xl lg:w-[30vw] w-[90vw] lg:ml-32 ml-5'>Experience Exceptional Healthcare In The USA With Omnicure USA</p>
       </div> 
              <div className='  flex  items-center text-slate-500 '>
-        <p className=' w-[30vw] ml-60'>Discover the pinnacle of healthcare services in the United States, where advancements, quality, cutting edge research, expert doctors and a commitment to patient success, combine to provide an unparalleled medical tourilg experience. Omnicure USA is your dedicated partner, guiding you towards improved health and wellness. Connect with us today and embark on a journey of exceptional USA healthcare services.</p>
+        <p className=' lg:w-[30vw] lg:ml-60 w-[80vw] ml-5 lg:mt-0 mt-[5vh]'>Discover the pinnacle of healthcare services in the United States, where advancements, quality, cutting edge research, expert doctors and a commitment to patient success, combine to provide an unparalleled medical tourilg experience. Omnicure USA is your dedicated partner, guiding you towards improved health and wellness. Connect with us today and embark on a journey of exceptional USA healthcare services.</p>
       </div> 
       </div>
       <div className='h-[50vh] flex flex-row justify-center gap-20'>

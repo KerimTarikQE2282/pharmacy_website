@@ -2,7 +2,7 @@ import React from 'react'
 import oldman from '../../../../Resources/Entities/oldman.png'
 export default function Entities() {
   return (
-    <div className='bg-white h-[80vh]'>
+    <div className='bg-white h-[80vh] hidden lg:block'>
      <p className='font-medium text-[#3280b8] text-4xl relative left-[5vw] top-[4vh] w-[20vw]' >Our Entities</p> 
      <div className='flex flex-row relative  top-[7vh] items-center justify-center'>
      <div className='w-[45vw] h-[60vh] flex flex-col' >

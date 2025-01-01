@@ -5,6 +5,7 @@ import Entities from './Components/Entities';
 import OurGrowth from './Components/OurGrowth'
 import OngoingProjects from './Components/OngoingProjects'
 import OurServices from './Components/OurServices'
+import Graph from './Components/Graph'
 export default function Page() {
   return (
     <div className='bg-white'>
@@ -14,6 +15,7 @@ export default function Page() {
 <Entities/>
 <OurGrowth/>
 <OngoingProjects/>
+<Graph/>
 <OurServices/>
 </div>
   );

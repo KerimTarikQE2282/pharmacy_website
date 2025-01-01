@@ -45,7 +45,7 @@ else if(year==2019){
     )
 }
   return (
-    <div className='mt-[25vh]'>
+    <div className='lg:mt-[25vh] mt-[10vh]'>
     <ol class="items-center lg:flex ml-[10vw]">
         <li class="relative mb-6 lg:mb-0 w-[25vw]">
         <button class="mt-3 lg:pe-8 bg-[#e6effd] flex justify-center p-3 pl-5  border-2 border-[#3d86ed] relative right-[3vw] bottom-[2vh]" onClick={()=>{setYear(1993)}}>

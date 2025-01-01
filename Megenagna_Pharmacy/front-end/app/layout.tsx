@@ -113,57 +113,65 @@ export default function RootLayout({
 
         {children}
 
-        <footer className="bg-blue-900 text-white py-10 flex flex-col px-[10vw]">
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row gap-3 relative">
-              <Image src={FooterLogo} alt="logo" className="w-[4vw] h-[4vw]" />
-              <p className="relative top-3">Pharmacy <br /> store</p>
-            </div>
-            <div>
-              <button className="rounded-full bg-white w-[4vw] h-[4vw]">
-                <ArrowUp color="Black" className="relative left-5" />
-              </button>
-            </div>
-          </div>
-          <hr className="w-[80vw] mt-10" />
-          <div className="h-[30vh] mt-5 flex flex-row gap-[10vw]">
-            <div className="w-[15vw] h-[30vh]">
-              <p className="font-bold text-2xl">Company</p>
-              <div className="mt-3">
-                <p>About us</p>
-                <p>About us</p>
-                <p>About us</p>
-                <p>About us</p>
-              </div>
-            </div>
-            <div className="w-[15vw] h-[30vh]">
-              <p className="font-bold text-2xl">Company</p>
-              <div className="mt-3">
-                <p>About us</p>
-                <p>About us</p>
-                <p>About us</p>
-                <p>About us</p>
-              </div>
-            </div>
-            <div className="w-[45vw] h-[30vh] bg-white">
-              <iframe
-                title="map"
-                src="https://maps.google.com/maps?q=Arsho%20Megenagna&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full border-0 rounded-lg"
-                loading="lazy"
-              ></iframe>
-            </div>
-          </div>
-          <hr className="w-[80vw] mt-3" />
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row gap-3 relative">
-              <p className="relative top-3">Copyright © 2023 Pharmacy Store</p>
-            </div>
-            <div>
-              <p>Terms of use / Privacy Policy</p>
-            </div>
-          </div>
-        </footer>
+        <footer className="bg-blue-900 text-white py-10 flex flex-col px-6 sm:px-[10vw]">
+  {/* Logo and Scroll Button */}
+  <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+    <div className="flex flex-row items-center gap-3">
+      <Image src={FooterLogo} alt="logo" className="w-[12vw] sm:w-[4vw] h-[12vw] sm:h-[4vw]" />
+      <p className="text-center sm:text-left">
+        Pharmacy <br /> store
+      </p>
+    </div>
+    <button className="rounded-full bg-white w-[12vw] sm:w-[4vw] h-[12vw] sm:h-[4vw] flex items-center justify-center">
+      <ArrowUp color="Black" />
+    </button>
+  </div>
+
+  <hr className="w-full sm:w-[80vw] mt-10 mx-auto" />
+
+  {/* Footer Content */}
+  <div className="flex flex-col sm:flex-row gap-8 sm:gap-[10vw] mt-5">
+    {/* Links Section */}
+    <div className="flex flex-row justify-between sm:gap-[10vw] w-full">
+      <div className="w-[40%] sm:w-[15vw]">
+        <p className="font-bold text-lg sm:text-2xl">Company</p>
+        <div className="mt-3 text-sm sm:text-base">
+          <p>About us</p>
+          <p>Our Team</p>
+          <p>Careers</p>
+          <p>Contact</p>
+        </div>
+      </div>
+      <div className="w-[40%] sm:w-[15vw]">
+        <p className="font-bold text-lg sm:text-2xl">Resources</p>
+        <div className="mt-3 text-sm sm:text-base">
+          <p>Blog</p>
+          <p>FAQs</p>
+          <p>Support</p>
+          <p>Help Center</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Map Section */}
+    <div className="w-full sm:w-[45vw] h-[20vh] sm:h-[30vh] bg-white rounded-lg overflow-hidden">
+      <iframe
+        title="map"
+        src="https://maps.google.com/maps?q=Arsho%20Megenagna&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        className="w-full h-full border-0"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+
+  <hr className="w-full sm:w-[80vw] mt-3 mx-auto" />
+
+  {/* Bottom Bar */}
+  <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left mt-5 gap-2 sm:gap-0">
+    <p>Copyright © 2023 Pharmacy Store</p>
+    <p>Terms of Use / Privacy Policy</p>
+  </div>
+</footer>
       </body>
     </html>
   );

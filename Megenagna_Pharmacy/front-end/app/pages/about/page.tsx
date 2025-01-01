@@ -9,10 +9,10 @@ export default function page() {
   return (
     <div>
       <Hero/>
-      <WhoWeAre/>
-      <OurTeam/>
-      <OurHistory/>
-      <Awards/>
+       <WhoWeAre/>
+     <OurTeam/>
+ <OurHistory/>
+           <Awards/> 
     </div>
   )
 }
